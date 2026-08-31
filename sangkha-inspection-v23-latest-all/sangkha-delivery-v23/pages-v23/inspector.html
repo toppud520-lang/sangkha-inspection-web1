@@ -1,0 +1,4841 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+
+<meta charset="utf-8">
+
+<meta
+  content="width=device-width, initial-scale=1.0"
+  name="viewport"
+>
+
+<title>Sangkha Hygiene Portal - Classroom Inspector Mode</title>
+
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+<link
+  href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+  rel="stylesheet"
+>
+
+<link
+  href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700&family=Sarabun:wght@400;500;600;700&display=swap"
+  rel="stylesheet"
+>
+
+<script id="tailwind-config">
+
+tailwind.config = {
+
+  darkMode: "class",
+
+  theme: {
+
+    extend: {
+
+      colors: {
+
+        "surface-bg": "#F8FAFC",
+        "primary-container": "#d31e24",
+        "on-primary": "#ffffff",
+        "container-border": "#E2E8F0",
+        "inverse-on-surface": "#eaf1ff",
+        "on-tertiary-container": "#ffeadd",
+        "surface": "#f8f9ff",
+        "tertiary-fixed-dim": "#ffb77d",
+        "surface-container-highest": "#d3e4fe",
+        "clean-success": "#10B981",
+        "inverse-primary": "#ffb4ac",
+        "surface-bright": "#f8f9ff",
+        "on-surface-variant": "#5c403d",
+        "dirty-danger": "#EF4444",
+        "outline-variant": "#e6bdb9",
+        "on-error": "#ffffff",
+        "surface-container-low": "#eff4ff",
+        "tertiary-fixed": "#ffdcc3",
+        "secondary-fixed": "#ffe16d",
+        "on-secondary-container": "#6e5c00",
+        "outline": "#916f6b",
+        "on-tertiary": "#ffffff",
+        "on-tertiary-fixed-variant": "#6e3900",
+        "surface-container": "#e5eeff",
+        "on-primary-fixed-variant": "#93000f",
+        "on-primary-fixed": "#410003",
+        "tertiary": "#7f4504",
+        "surface-dim": "#cbdbf5",
+        "tertiary-container": "#9d5c1e",
+        "on-tertiary-fixed": "#2f1500",
+        "on-background": "#0b1c30",
+        "surface-container-lowest": "#ffffff",
+        "on-error-container": "#93000a",
+        "surface-tint": "#bf0618",
+        "error-container": "#ffdad6",
+        "on-primary-container": "#ffe9e7",
+        "primary": "#ab0013",
+        "inverse-surface": "#213145",
+        "maintenance-orange": "#F97316",
+        "surface-variant": "#d3e4fe",
+        "primary-fixed": "#ffdad6",
+        "on-secondary": "#ffffff",
+        "sme-special": "#8B5CF6",
+        "on-surface": "#0b1c30",
+        "secondary": "#705d00",
+        "secondary-fixed-dim": "#e9c400",
+        "error": "#ba1a1a",
+        "pending-warning": "#F59E0B",
+        "primary-fixed-dim": "#ffb4ac",
+        "on-secondary-fixed": "#221b00",
+        "background": "#f8f9ff",
+        "surface-container-high": "#dce9ff",
+        "on-secondary-fixed-variant": "#544600",
+        "secondary-container": "#fcd400"
+      },
+
+      borderRadius: {
+
+        "DEFAULT": "0.125rem",
+        "lg": "0.25rem",
+        "xl": "0.5rem",
+        "full": "0.75rem"
+
+      },
+
+      spacing: {
+
+        "gutter": "16px",
+        "margin-desktop": "32px",
+        "stack-comfortable": "24px",
+        "stack-compact": "8px",
+        "margin-mobile": "16px",
+        "unit": "4px"
+
+      },
+
+      fontFamily: {
+
+        "body-lg": ["Sarabun", "sans-serif"],
+        "label-caps": ["Kanit", "sans-serif"],
+        "label-bold": ["Sarabun", "sans-serif"],
+        "headline-lg": ["Kanit", "sans-serif"],
+        "headline-md": ["Kanit", "sans-serif"],
+        "body-sm": ["Sarabun", "sans-serif"],
+        "headline-xl": ["Kanit", "sans-serif"],
+        "body-md": ["Sarabun", "sans-serif"]
+
+      },
+
+      fontSize: {
+
+        "body-lg": [
+          "18px",
+          {
+            "lineHeight": "1.6",
+            "fontWeight": "400"
+          }
+        ],
+
+        "label-caps": [
+          "11px",
+          {
+            "lineHeight": "1",
+            "fontWeight": "600"
+          }
+        ],
+
+        "label-bold": [
+          "12px",
+          {
+            "lineHeight": "1",
+            "letterSpacing": "0.05em",
+            "fontWeight": "700"
+          }
+        ],
+
+        "headline-lg": [
+          "24px",
+          {
+            "lineHeight": "1.3",
+            "fontWeight": "500"
+          }
+        ],
+
+        "headline-md": [
+          "20px",
+          {
+            "lineHeight": "1.4",
+            "fontWeight": "500"
+          }
+        ],
+
+        "body-sm": [
+          "14px",
+          {
+            "lineHeight": "1.4",
+            "fontWeight": "400"
+          }
+        ],
+
+        "headline-xl": [
+          "32px",
+          {
+            "lineHeight": "1.2",
+            "fontWeight": "600"
+          }
+        ],
+
+        "body-md": [
+          "16px",
+          {
+            "lineHeight": "1.5",
+            "fontWeight": "400"
+          }
+        ]
+
+      }
+
+    }
+
+  }
+
+};
+
+</script>
+
+<style>
+
+body {
+  font-family: 'Sarabun', sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.font-kanit {
+  font-family: 'Kanit', sans-serif;
+}
+
+.material-symbols-outlined {
+
+  font-variation-settings:
+    'FILL' 1,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 24;
+
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+input[type="range"] {
+  accent-color: #ab0013;
+}
+
+</style>
+
+  <script src="app-config.js?v=20260828-v23"></script>
+  <script src="api-client.js?v=20260828-v23"></script>
+</head>
+
+<body
+  class="bg-surface-bg text-on-surface flex flex-col min-h-screen relative overflow-x-hidden pb-[80px]"
+>
+
+<!-- =========================================================
+     TOP HEADER
+========================================================= -->
+
+<header
+  class="
+    sticky
+    top-0
+    z-[40]
+    bg-primary
+    flex
+    items-center
+    justify-between
+    px-margin-mobile
+    w-full
+    py-unit
+    shadow-md
+    border-b
+    border-container-border
+  "
+>
+
+  <div class="flex items-center gap-2">
+
+    <img
+      class="w-10 h-10 rounded-full object-cover border-2 border-on-primary bg-white"
+      src="https://lh3.googleusercontent.com/aida-public/AB6AXuBugKZEHjGmzNqKnW1iGS1562pLDLvgLo0wG9oWUOvV6Ix0NiKCMb6nU4rHmGBNt_7KM5VJMqDxvgSdWLVxP_1hfmbbjevhEud0vovVDF4zTfAjAA8yevH4MkoJDRo0sUvi255b7NSlvc043vlBKF1wTIofTuftY1OMmHZvjTTYod6EjxMQSEvPm9Y0ujQptPRgEI4Hr1LPOjDsImkLlHUBA8h9FCt-LBMskThc9fJNQkwkmqJctiKuIHZU0Z-ahN98TA"
+      alt="Student Council Logo"
+    >
+
+    <div class="flex flex-col">
+
+      <span
+        class="
+          font-headline-md
+          text-headline-md
+          font-bold
+          text-on-primary
+        "
+      >
+        Inspectors
+      </span>
+
+      <span
+        class="
+          font-body-sm
+          text-body-sm
+          text-on-primary
+          opacity-90
+        "
+      >
+        👤
+        <span data-inspector-name>
+          กำลังโหลด...
+        </span>
+
+        <br>
+
+        (
+        <span data-inspector-id>
+          ...
+        </span>
+        )
+
+      </span>
+
+      <span
+        class="
+          inspector-assignment
+          inline-flex
+          items-center
+          gap-1
+          font-label-caps
+          text-label-caps
+          bg-[#4c1d95]
+          text-white
+          px-2
+          py-0.5
+          rounded
+          mt-0.5
+          w-fit
+        "
+      >
+        กำลังโหลดสิทธิ์...
+      </span>
+
+    </div>
+
+  </div>
+
+  <div class="flex flex-col items-end gap-1">
+
+    <div
+      id="inspection-time-status"
+      class="
+        flex
+        items-center
+        gap-1
+        text-on-primary
+        font-body-sm
+        text-body-sm
+        bg-black/20
+        px-2
+        py-1
+        rounded
+      "
+    >
+
+      <span class="material-symbols-outlined text-[14px]">
+        schedule
+      </span>
+
+      <span id="inspection-current-time">
+        --:--
+      </span>
+
+      <span
+        id="inspection-open-dot"
+        class="
+          w-2
+          h-2
+          rounded-full
+          bg-clean-success
+          ml-1
+        "
+      ></span>
+
+      <span id="inspection-open-text">
+        CLOSED
+      </span>
+
+    </div>
+
+  </div>
+
+</header>
+
+
+<!-- =========================================================
+     MAIN
+========================================================= -->
+
+<main
+  class="
+    flex-grow
+    w-full
+    max-w-lg
+    mx-auto
+    p-margin-mobile
+    flex
+    flex-col
+    gap-stack-comfortable
+    pb-32
+  "
+>
+
+
+<!-- =========================================================
+     DASHBOARD SUMMARY
+========================================================= -->
+
+<section class="grid grid-cols-2 gap-stack-compact">
+
+  <!-- PROGRESS -->
+
+  <div
+    class="
+      col-span-2
+      bg-surface-container-lowest
+      rounded-xl
+      p-4
+      shadow-sm
+      border
+      border-container-border
+      flex
+      flex-col
+      gap-2
+    "
+  >
+
+    <div class="flex justify-between items-center">
+
+      <span
+        class="
+          font-label-bold
+          text-label-bold
+          text-on-surface-variant
+        "
+      >
+        ความคืบหน้าการประเมิน
+      </span>
+
+      <span
+        data-progress
+        class="
+          font-headline-md
+          text-headline-md
+          font-bold
+          text-primary
+        "
+      >
+        0%
+      </span>
+
+    </div>
+
+    <div
+      class="
+        w-full
+        bg-surface-container
+        h-2
+        rounded-full
+        overflow-hidden
+      "
+    >
+
+      <div
+        data-progress-bar
+        class="
+          bg-primary
+          h-full
+          rounded-full
+          transition-all
+          duration-500
+        "
+        style="width:0%"
+      ></div>
+
+    </div>
+
+    <span
+      data-progress-count
+      class="
+        font-body-sm
+        text-body-sm
+        text-on-surface-variant
+        text-right
+      "
+    >
+      0 / 0 ห้อง
+    </span>
+
+  </div>
+
+
+  <!-- COMPLETED -->
+
+  <div
+    class="
+      bg-surface-container-lowest
+      rounded-xl
+      p-3
+      shadow-sm
+      border
+      border-container-border
+      flex
+      items-center
+      gap-3
+    "
+  >
+
+    <div
+      class="
+        w-10
+        h-10
+        rounded-full
+        bg-clean-success/10
+        flex
+        items-center
+        justify-center
+        text-clean-success
+      "
+    >
+
+      <span class="material-symbols-outlined">
+        check_circle
+      </span>
+
+    </div>
+
+    <div class="flex flex-col">
+
+      <span
+        data-completed
+        class="
+          font-headline-md
+          text-headline-md
+          font-bold
+          text-on-surface
+        "
+      >
+        0
+      </span>
+
+      <span
+        class="
+          font-label-caps
+          text-label-caps
+          text-on-surface-variant
+        "
+      >
+        ตรวจเสร็จ
+      </span>
+
+    </div>
+
+  </div>
+
+
+  <!-- PENDING -->
+
+  <div
+    class="
+      bg-surface-container-lowest
+      rounded-xl
+      p-3
+      shadow-sm
+      border
+      border-container-border
+      flex
+      items-center
+      gap-3
+    "
+  >
+
+    <div
+      class="
+        w-10
+        h-10
+        rounded-full
+        bg-pending-warning/10
+        flex
+        items-center
+        justify-center
+        text-pending-warning
+      "
+    >
+
+      <span class="material-symbols-outlined">
+        hourglass_empty
+      </span>
+
+    </div>
+
+    <div class="flex flex-col">
+
+      <span
+        data-pending
+        class="
+          font-headline-md
+          text-headline-md
+          font-bold
+          text-on-surface
+        "
+      >
+        0
+      </span>
+
+      <span
+        class="
+          font-label-caps
+          text-label-caps
+          text-on-surface-variant
+        "
+      >
+        รอตรวจ
+      </span>
+
+    </div>
+
+  </div>
+
+
+  <!-- AVERAGE -->
+
+  <div
+    class="
+      col-span-2
+      bg-surface-container-lowest
+      rounded-xl
+      p-3
+      shadow-sm
+      border
+      border-container-border
+      flex
+      items-center
+      justify-between
+    "
+  >
+
+    <div class="flex items-center gap-3">
+
+      <div
+        class="
+          w-10
+          h-10
+          rounded-full
+          bg-[#3b82f6]/10
+          flex
+          items-center
+          justify-center
+          text-[#3b82f6]
+        "
+      >
+
+        <span class="material-symbols-outlined">
+          analytics
+        </span>
+
+      </div>
+
+      <span
+        class="
+          font-label-bold
+          text-label-bold
+          text-on-surface-variant
+        "
+      >
+        คะแนนเฉลี่ยรวม
+      </span>
+
+    </div>
+
+    <span
+      data-average
+      class="
+        font-headline-lg
+        text-headline-lg
+        font-bold
+        text-[#3b82f6]
+      "
+    >
+      0.00
+    </span>
+
+  </div>
+
+</section>
+
+
+<!-- =========================================================
+     LOCATION LIST
+========================================================= -->
+
+<section
+  id="inspector-room-list"
+  class="flex flex-col gap-stack-compact"
+>
+
+  <h2
+    class="
+      font-headline-md
+      text-headline-md
+      font-bold
+      text-on-surface
+      mb-2
+    "
+  >
+    รายการห้องเรียน
+  </h2>
+
+  <div
+    id="inspector-room-container"
+    class="flex flex-col gap-3"
+  >
+
+    <div
+      class="
+        text-center
+        py-8
+        text-on-surface-variant
+      "
+    >
+      กำลังโหลดรายการห้อง...
+    </div>
+
+  </div>
+
+</section>
+
+</main>
+
+
+<!-- =========================================================
+     BOTTOM NAV
+========================================================= -->
+
+<nav
+  class="
+    fixed
+    bottom-0
+    left-0
+    w-full
+    z-50
+    rounded-t-xl
+    shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)]
+    bg-surface-container
+    flex
+    justify-around
+    items-center
+    px-2
+    py-2
+  "
+>
+
+  <button
+    onclick="logoutInspector()"
+    class="
+      flex
+      items-center
+      justify-center
+      gap-2
+      bg-primary
+      text-on-primary
+      w-full
+      mx-4
+      py-3
+      rounded-xl
+      font-headline-md
+      shadow-md
+      active:scale-95
+      transition-transform
+      duration-200
+    "
+  >
+
+    <span class="material-symbols-outlined">
+      logout
+    </span>
+
+    <span>
+      ลงชื่อออก
+    </span>
+
+  </button>
+
+</nav>
+
+
+<!-- =========================================================
+     ASSESSMENT MODAL
+========================================================= -->
+
+<div
+  class="
+    fixed
+    inset-0
+    z-[100]
+    flex
+    flex-col
+    justify-end
+    pointer-events-none
+    translate-y-full
+    transition-transform
+    duration-300
+    ease-in-out
+  "
+  id="assessment-modal"
+>
+
+  <!-- BACKDROP -->
+
+  <div
+    class="
+      absolute
+      inset-0
+      bg-on-background/50
+      backdrop-blur-sm
+      pointer-events-auto
+    "
+    onclick="
+      document
+        .getElementById('assessment-modal')
+        .classList.add('translate-y-full')
+    "
+  ></div>
+
+
+  <!-- SHEET -->
+
+  <div
+    class="
+      bg-surface-bg
+      w-full
+      rounded-t-2xl
+      shadow-2xl
+      pointer-events-auto
+      flex
+      flex-col
+      max-h-[90vh]
+      overflow-hidden
+      relative
+    "
+  >
+
+    <!-- HEADER -->
+
+    <div
+      class="
+        px-4
+        py-3
+        border-b
+        border-container-border
+        bg-surface-container-lowest
+        sticky
+        top-0
+        z-10
+        flex
+        flex-col
+        items-center
+      "
+    >
+
+      <div
+        class="
+          w-12
+          h-1.5
+          bg-container-border
+          rounded-full
+          mb-3
+        "
+      ></div>
+
+      <div
+        class="
+          w-full
+          flex
+          justify-between
+          items-center
+        "
+      >
+
+        <div>
+
+          <h2
+            class="
+              font-headline-lg
+              text-headline-lg
+              font-bold
+              text-on-surface
+            "
+          >
+            แบบฟอร์มประเมิน
+          </h2>
+
+          <div
+            id="assessment-type-label"
+            class="
+              text-sm
+              text-on-surface-variant
+              mt-1
+            "
+          >
+            ห้องเรียน
+          </div>
+
+        </div>
+
+        <button
+          type="button"
+          class="
+            text-on-surface-variant
+            hover:text-on-surface
+            bg-surface-container
+            rounded-full
+            p-1
+          "
+          onclick="
+            document
+              .getElementById('assessment-modal')
+              .classList.add('translate-y-full')
+          "
+        >
+
+          <span class="material-symbols-outlined">
+            close
+          </span>
+
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <!-- SCROLLABLE CONTENT -->
+
+    <div
+      class="
+        p-4
+        overflow-y-auto
+        flex
+        flex-col
+        gap-6
+        pb-32
+        hide-scrollbar
+      "
+    >
+
+      <!-- LIVE SCORE -->
+
+      <div
+        class="
+          bg-primary/5
+          rounded-xl
+          p-4
+          border
+          border-primary/20
+          flex
+          justify-between
+          items-center
+          sticky
+          top-0
+          z-10
+          backdrop-blur-md
+        "
+      >
+
+        <div>
+
+          <span
+            class="
+              font-headline-md
+              text-headline-md
+              font-bold
+              text-on-surface
+            "
+          >
+            คะแนนรวมสุทธิ
+          </span>
+
+          <div
+            id="assessment-total-label"
+            class="
+              text-xs
+              text-on-surface-variant
+              mt-1
+            "
+          >
+            คะแนนเต็ม 100
+          </div>
+
+        </div>
+
+        <div
+          class="
+            font-headline-xl
+            text-headline-xl
+            font-bold
+            text-primary
+            flex
+            items-baseline
+            gap-1
+          "
+        >
+
+          <span id="live-score">
+            0
+          </span>
+
+          <span
+            class="
+              text-body-md
+              text-on-surface-variant
+              font-normal
+            "
+          >
+            / 100
+          </span>
+
+        </div>
+
+      </div>
+
+
+      <!-- CRITERIA -->
+
+      <div
+        id="assessment-criteria-container"
+        class="grid gap-3"
+      ></div>
+
+
+      <!-- EVIDENCE -->
+
+      <div class="flex flex-col gap-2">
+
+        <label
+          class="
+            font-label-bold
+            text-label-bold
+            text-on-surface
+          "
+        >
+          แนบรูปถ่ายหลักฐาน
+
+          <span class="text-dirty-danger">
+            *
+          </span>
+
+        </label>
+
+        <span
+          class="
+            font-body-sm
+            text-body-sm
+            text-on-surface-variant
+            mb-1
+          "
+        >
+          (บีบอัด & ลายน้ำอัตโนมัติ)
+        </span>
+
+        <input
+          type="file"
+          id="evidence-photo"
+          accept="image/*"
+          capture="environment"
+          class="hidden"
+        >
+
+        <button
+          type="button"
+          id="evidence-photo-button"
+          class="
+            w-full
+            h-32
+            border-2
+            border-dashed
+            border-primary/40
+            rounded-xl
+            bg-surface-container-low
+            flex
+            flex-col
+            items-center
+            justify-center
+            gap-2
+            text-primary
+            hover:bg-surface-container
+            transition-colors
+          "
+        >
+
+          <span
+            class="
+              material-symbols-outlined
+              text-[32px]
+            "
+          >
+            photo_camera
+          </span>
+
+          <span
+            class="
+              font-label-bold
+              text-label-bold
+            "
+          >
+            แตะเพื่อถ่ายรูป / เลือกรูป
+          </span>
+
+        </button>
+
+        <div
+          id="evidence-preview"
+          class="hidden"
+        ></div>
+
+      </div>
+
+
+      <!-- REMARK -->
+
+      <div class="flex flex-col gap-2">
+
+        <label
+          class="
+            font-label-bold
+            text-label-bold
+            text-on-surface
+          "
+        >
+          หมายเหตุเพิ่มเติม (ถ้ามี)
+        </label>
+
+        <textarea
+          class="
+            w-full
+            bg-surface-container-lowest
+            border
+            border-container-border
+            rounded-xl
+            p-3
+            font-body-md
+            text-body-md
+            focus:ring-2
+            focus:ring-primary
+            focus:border-primary
+            resize-none
+            h-24
+          "
+          placeholder="พบโต๊ะนักเรียนแถวหลังชำรุด 1 ตัว..."
+        ></textarea>
+
+      </div>
+
+    </div>
+
+
+    <!-- ACTION FOOTER -->
+
+    <div
+      class="
+        absolute
+        bottom-0
+        w-full
+        bg-surface-container-lowest
+        border-t
+        border-container-border
+        p-4
+        flex
+        gap-3
+        shadow-[0_-10px_15px_-3px_rgba(0,0,0,0.1)]
+      "
+    >
+
+      <button
+        type="button"
+        class="
+          flex-1
+          bg-surface-container
+          hover:bg-surface-container-high
+          text-on-surface-variant
+          py-3
+          rounded-xl
+          font-headline-md
+          text-headline-md
+          transition-colors
+        "
+        onclick="
+          document
+            .getElementById('assessment-modal')
+            .classList.add('translate-y-full')
+        "
+      >
+        ยกเลิก
+      </button>
+
+      <button
+        type="button"
+        data-submit-inspection
+        class="
+          flex-2
+          w-2/3
+          bg-clean-success
+          hover:bg-[#059669]
+          text-white
+          py-3
+          rounded-xl
+          font-headline-md
+          text-headline-md
+          shadow-md
+          flex
+          items-center
+          justify-center
+          gap-2
+          transition-colors
+        "
+        onclick="submitAssessment()"
+      >
+
+        <span class="material-symbols-outlined text-[20px]">
+          save
+        </span>
+
+        ยืนยันและส่งผล
+
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
+<footer
+  class="
+    text-center
+    py-6
+    text-on-surface-variant
+    font-body-sm
+    text-body-sm
+    pb-[100px]
+  "
+>
+  จัดทำโดย นายยุทธนา เดือนขาว คณะกรรมการสภานักเรียน 69
+</footer>
+
+
+<script>
+
+/* =========================================================
+   INSPECTOR PAGE
+   FULL VERSION
+========================================================= */
+
+
+/* =========================================================
+   1. SESSION / USER
+========================================================= */
+
+let inspectorSessionId =
+  new URLSearchParams(window.location.search).get('sessionId') ||
+  sessionStorage.getItem('sessionId') ||
+  '';
+
+
+let inspectorUser =
+  JSON.parse(sessionStorage.getItem('user') || '{}');
+
+
+console.log(
+  '========================================'
+);
+
+console.log(
+  'INSPECTOR PAGE SCRIPT START'
+);
+
+console.log(
+  'Session ID:',
+  inspectorSessionId
+);
+
+console.log(
+  'Inspector User:',
+  inspectorUser
+);
+
+console.log(
+  '========================================'
+);
+
+
+/* =========================================================
+   2. SESSION VALIDATION
+========================================================= */
+
+function validateInspectorSession() {
+
+  if (!inspectorSessionId) {
+
+    console.error(
+      'ไม่พบ Inspector Session ID'
+    );
+
+    alert(
+      'ไม่พบ Session กรุณา Login ใหม่'
+    );
+
+    return false;
+
+  }
+
+
+  if (
+    !inspectorUser ||
+    !inspectorUser.Student_ID
+  ) {
+
+    console.error(
+      'ไม่พบข้อมูล Inspector'
+    );
+
+    alert(
+      'ไม่พบข้อมูลผู้ตรวจ กรุณา Login ใหม่'
+    );
+
+    return false;
+
+  }
+
+
+  return true;
+
+}
+
+
+/* =========================================================
+   3. ESCAPE HTML
+========================================================= */
+
+function escapeInspectorHtml(value) {
+
+  return String(value || '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+
+}
+
+
+/* =========================================================
+   4. ESCAPE ATTRIBUTE
+========================================================= */
+
+function escapeInspectorValue(value) {
+
+  return String(value || '')
+    .replace(/\\/g, '\\\\')
+    .replace(/'/g, "\\'");
+
+}
+
+
+/* =========================================================
+   5. HEADER
+========================================================= */
+
+function initializeInspectorHeader() {
+
+  console.log(
+    'STEP - Initialize Inspector Header'
+  );
+
+
+  if (!inspectorUser) {
+
+    console.error(
+      'ไม่พบ inspectorUser'
+    );
+
+    return;
+
+  }
+
+
+  document
+    .querySelectorAll('[data-inspector-name]')
+    .forEach(function(element) {
+
+      element.textContent =
+        inspectorUser.Full_Name || '-';
+
+    });
+
+
+  document
+    .querySelectorAll('[data-inspector-id]')
+    .forEach(function(element) {
+
+      element.textContent =
+        inspectorUser.Student_ID || '-';
+
+    });
+
+
+  let grade =
+    inspectorUser.Assigned_Grade;
+
+
+  if (
+    grade === undefined ||
+    grade === null ||
+    String(grade).trim() === ''
+  ) {
+
+    grade = 'ALL';
+
+  }
+
+
+  grade =
+    String(grade).trim();
+
+
+  const gradeText =
+    grade === 'ALL'
+      ? 'ทุกระดับชั้น'
+      : 'ม.' + grade;
+
+
+  let type =
+    inspectorUser.Assigned_Type;
+
+
+  if (
+    type === undefined ||
+    type === null ||
+    String(type).trim() === ''
+  ) {
+
+    type = 'ALL';
+
+  }
+
+
+  type =
+    String(type)
+      .trim()
+      .toUpperCase();
+
+
+  let typeText =
+    'ทั้งหมด';
+
+
+  if (type === 'CLASSROOM') {
+
+    typeText =
+      'ห้องเรียน';
+
+  }
+
+
+  if (type === 'ZONE') {
+
+    typeText =
+      'เขตพื้นที่';
+
+  }
+
+
+  document
+    .querySelectorAll(
+      '.inspector-assignment, [data-inspector-assignment]'
+    )
+    .forEach(function(element) {
+
+      element.textContent =
+        'กรรมการตรวจ - ' +
+        gradeText +
+        ' | ' +
+        typeText;
+
+    });
+
+
+  console.log(
+    'Inspector Name:',
+    inspectorUser.Full_Name
+  );
+
+  console.log(
+    'Inspector ID:',
+    inspectorUser.Student_ID
+  );
+
+  console.log(
+    'Assignment:',
+    gradeText,
+    typeText
+  );
+
+}
+
+
+/* =========================================================
+   6. LOAD LOCATIONS
+========================================================= */
+
+function loadInspectorData(sessionId) {
+
+  console.log(
+    '========================================'
+  );
+
+  console.log(
+    'LOAD INSPECTOR DATA'
+  );
+
+  console.log(
+    'Session:',
+    sessionId
+  );
+
+  console.log(
+    '========================================'
+  );
+
+
+  if (!sessionId) {
+
+    showInspectorLocationError(
+      'ไม่พบ Session กรุณา Login ใหม่'
+    );
+
+    return;
+
+  }
+
+
+  const container =
+    document.getElementById(
+      'inspector-room-container'
+    );
+
+
+  if (!container) {
+
+    console.error(
+      'ไม่พบ inspector-room-container'
+    );
+
+    return;
+
+  }
+
+
+  container.innerHTML = `
+
+    <div
+      class="
+        text-center
+        py-8
+        text-on-surface-variant
+      "
+    >
+
+      <span
+        class="
+          material-symbols-outlined
+          animate-spin
+        "
+      >
+        progress_activity
+      </span>
+
+      <div class="mt-2">
+        กำลังโหลดรายการ...
+      </div>
+
+    </div>
+
+  `;
+
+
+  google.script.run
+
+    .withSuccessHandler(function(result) {
+
+      console.log(
+        'LOAD INSPECTOR RESULT:',
+        result
+      );
+
+
+      if (
+        !result ||
+        result.success !== true
+      ) {
+
+        console.error(
+          'โหลด Inspector ไม่สำเร็จ:',
+          result
+        );
+
+
+        showInspectorLocationError(
+
+          result &&
+          (
+            result.error ||
+            result.message
+          )
+
+            ? (
+                result.error ||
+                result.message
+              )
+
+            : 'ไม่สามารถโหลดรายการได้'
+
+        );
+
+
+        return;
+
+      }
+
+
+      const locations =
+        Array.isArray(result.locations)
+          ? result.locations
+          : [];
+
+
+      console.log(
+        'จำนวน Location:',
+        locations.length
+      );
+
+
+      console.log(
+        'Locations:',
+        locations
+      );
+
+
+      renderInspectorLocations(
+        locations
+      );
+
+
+      updateInspectorSummary(
+        locations,
+        result.averageScore
+      );
+
+    })
+
+    .withFailureHandler(function(error) {
+
+      console.error(
+        'LOAD INSPECTOR ERROR:',
+        error
+      );
+
+
+      showInspectorLocationError(
+
+        error &&
+        error.message
+
+          ? error.message
+
+          : 'เกิดข้อผิดพลาดในการโหลดข้อมูล'
+
+      );
+
+    })
+
+    .getInspectorLocations(
+      sessionId
+    );
+
+}
+
+
+/* =========================================================
+   7. RENDER LOCATIONS
+========================================================= */
+
+function renderInspectorLocations(locations) {
+
+  const container =
+    document.getElementById(
+      'inspector-room-container'
+    );
+
+
+  if (!container) {
+
+    console.error(
+      'ไม่พบ inspector-room-container'
+    );
+
+    return;
+
+  }
+
+
+  if (
+    !Array.isArray(locations) ||
+    locations.length === 0
+  ) {
+
+    container.innerHTML = `
+
+      <div
+        class="
+          bg-surface-container-lowest
+          rounded-xl
+          p-6
+          border
+          border-container-border
+          text-center
+        "
+      >
+
+        <span
+          class="
+            material-symbols-outlined
+            text-[40px]
+            text-on-surface-variant
+          "
+        >
+          meeting_room
+        </span>
+
+        <div
+          class="
+            mt-2
+            font-headline-md
+            text-headline-md
+            font-bold
+          "
+        >
+          ไม่พบรายการที่ได้รับมอบหมาย
+        </div>
+
+      </div>
+
+    `;
+
+    return;
+
+  }
+
+
+  container.innerHTML =
+    locations
+      .map(function(location) {
+
+        const locationId =
+          location.Location_ID ||
+          location.locationId ||
+          location.id ||
+          '';
+
+
+        const locationName =
+          location.Location_Name ||
+          location.locationName ||
+          location.name ||
+          '-';
+
+
+        const type =
+          String(
+            location.Type ||
+            location.type ||
+            ''
+          )
+          .trim()
+          .toUpperCase();
+
+
+        const completed =
+          location.Completed === true ||
+          location.Completed === 'TRUE' ||
+          location.completed === true ||
+          location.completed === 'TRUE' ||
+          location.Is_Completed === true ||
+          location.Is_Completed === 'TRUE';
+
+
+        const isSME =
+          location.Is_SME === true ||
+          location.Is_SME === 'TRUE';
+
+
+        const smeBadge =
+          isSME
+
+            ? `
+
+              <span
+                class="
+                  inline-flex
+                  items-center
+                  gap-1
+                  bg-[#8B5CF6]
+                  text-white
+                  text-xs
+                  px-2
+                  py-1
+                  rounded-full
+                "
+              >
+
+                <span
+                  class="
+                    material-symbols-outlined
+                    text-[14px]
+                  "
+                >
+                  star
+                </span>
+
+                SME
+
+              </span>
+
+            `
+
+            : '';
+
+
+        const completedBadge =
+          completed
+
+            ? `
+
+              <span
+                class="
+                  inline-flex
+                  items-center
+                  gap-1
+                  bg-green-100
+                  text-green-700
+                  text-xs
+                  px-2
+                  py-1
+                  rounded-full
+                  font-medium
+                "
+              >
+
+                <span
+                  class="
+                    material-symbols-outlined
+                    text-[15px]
+                  "
+                >
+                  check_circle
+                </span>
+
+                ตรวจแล้ววันนี้
+
+              </span>
+
+            `
+
+            : `
+
+              <span
+                class="
+                  inline-flex
+                  items-center
+                  gap-1
+                  bg-orange-100
+                  text-orange-700
+                  text-xs
+                  px-2
+                  py-1
+                  rounded-full
+                  font-medium
+                "
+              >
+
+                <span
+                  class="
+                    material-symbols-outlined
+                    text-[15px]
+                  "
+                >
+                  pending
+                </span>
+
+                รอตรวจ
+
+              </span>
+
+            `;
+
+
+        const buttonClass =
+          completed
+
+            ? `
+
+              w-full
+              text-left
+              bg-green-50
+              rounded-xl
+              p-4
+              border
+              border-green-200
+              shadow-sm
+              opacity-80
+
+            `
+
+            : `
+
+              w-full
+              text-left
+              bg-surface-container-lowest
+              rounded-xl
+              p-4
+              border
+              border-container-border
+              shadow-sm
+              hover:shadow-md
+              active:scale-[0.99]
+              transition-all
+
+            `;
+
+
+        const clickAction =
+          completed
+
+            ? ''
+
+            : `
+
+              onclick="
+                openAssessmentModalById(
+                  '${escapeInspectorValue(locationId)}',
+                  '${escapeInspectorValue(locationName)}',
+                  '${escapeInspectorValue(type)}'
+                )
+              "
+
+            `;
+
+
+        return `
+
+          <button
+            type="button"
+
+            class="${buttonClass}"
+
+            data-location-id="${escapeInspectorHtml(locationId)}"
+
+            ${clickAction}
+
+            ${completed ? 'disabled' : ''}
+          >
+
+            <div
+              class="
+                flex
+                items-center
+                justify-between
+                gap-3
+              "
+            >
+
+              <div
+                class="
+                  flex
+                  items-center
+                  gap-3
+                  min-w-0
+                "
+              >
+
+                <div
+                  class="
+                    w-11
+                    h-11
+                    rounded-full
+                    ${
+                      completed
+                        ? 'bg-green-100 text-green-600'
+                        : 'bg-primary/10 text-primary'
+                    }
+                    flex
+                    items-center
+                    justify-center
+                    flex-shrink-0
+                  "
+                >
+
+                  <span class="material-symbols-outlined">
+
+                    ${
+                      completed
+
+                        ? 'check_circle'
+
+                        : (
+                            type === 'ZONE'
+                              ? 'map'
+                              : 'meeting_room'
+                          )
+                    }
+
+                  </span>
+
+                </div>
+
+
+                <div class="min-w-0">
+
+                  <div
+                    class="
+                      font-headline-md
+                      text-headline-md
+                      font-bold
+                      text-on-surface
+                      truncate
+                    "
+                  >
+                    ${escapeInspectorHtml(locationName)}
+                  </div>
+
+
+                  <div
+                    class="
+                      text-sm
+                      text-on-surface-variant
+                      mt-1
+                    "
+                  >
+                    ${escapeInspectorHtml(locationId)}
+                  </div>
+
+
+                  <div
+                    class="
+                      flex
+                      flex-wrap
+                      gap-2
+                      mt-2
+                    "
+                  >
+
+                    ${completedBadge}
+
+                    ${smeBadge}
+
+                  </div>
+
+                </div>
+
+              </div>
+
+
+              <div
+                class="
+                  flex
+                  flex-col
+                  items-end
+                  gap-1
+                  flex-shrink-0
+                "
+              >
+
+                ${
+                  completed
+
+                    ? `
+
+                      <span
+                        class="
+                          material-symbols-outlined
+                          text-green-600
+                        "
+                      >
+                        done
+                      </span>
+
+                    `
+
+                    : `
+
+                      <span
+                        class="
+                          material-symbols-outlined
+                          text-on-surface-variant
+                        "
+                      >
+                        chevron_right
+                      </span>
+
+                    `
+                }
+
+              </div>
+
+            </div>
+
+          </button>
+
+        `;
+
+      })
+      .join('');
+
+}
+
+
+/* =========================================================
+   8. ERROR UI
+========================================================= */
+
+function showInspectorLocationError(message) {
+
+  const container =
+    document.getElementById(
+      'inspector-room-container'
+    );
+
+
+  if (!container) {
+
+    return;
+
+  }
+
+
+  container.innerHTML = `
+
+    <div
+      class="
+        bg-red-50
+        border
+        border-red-200
+        rounded-xl
+        p-5
+        text-center
+      "
+    >
+
+      <span
+        class="
+          material-symbols-outlined
+          text-red-500
+          text-[40px]
+        "
+      >
+        error
+      </span>
+
+
+      <div
+        class="
+          mt-2
+          font-headline-md
+          text-headline-md
+          font-bold
+          text-red-700
+        "
+      >
+        โหลดรายการไม่สำเร็จ
+      </div>
+
+
+      <div
+        class="
+          mt-1
+          text-sm
+          text-red-600
+        "
+      >
+        ${escapeInspectorHtml(message)}
+      </div>
+
+
+      <button
+        type="button"
+
+        onclick="
+          loadInspectorData(
+            inspectorSessionId
+          )
+        "
+
+        class="
+          mt-4
+          bg-primary
+          text-white
+          px-5
+          py-2
+          rounded-lg
+        "
+      >
+        ลองใหม่
+      </button>
+
+    </div>
+
+  `;
+
+}
+
+
+/* =========================================================
+   9. DASHBOARD SUMMARY
+========================================================= */
+
+function updateInspectorSummary(locations, serverAverageScore) {
+
+  const list =
+    Array.isArray(locations)
+      ? locations
+      : [];
+
+
+  const total =
+    list.length;
+
+
+  const completed =
+    list.filter(function(location) {
+
+      return (
+        location.Completed === true ||
+        location.Completed === 'TRUE' ||
+        location.completed === true ||
+        location.completed === 'TRUE' ||
+        location.Is_Completed === true ||
+        location.Is_Completed === 'TRUE'
+      );
+
+    }).length;
+
+
+  const pending =
+    Math.max(
+      0,
+      total - completed
+    );
+
+
+  const progress =
+    total > 0
+      ? Math.round(
+          (completed / total) * 100
+        )
+      : 0;
+
+
+  const scoredLocations =
+    list.filter(function(location) {
+
+      const score =
+        Number(
+          location.Score
+        );
+
+      return Number.isFinite(score);
+
+    });
+
+
+  let averageScore =
+    0;
+
+
+  if (
+    scoredLocations.length > 0
+  ) {
+
+    const scoreTotal =
+      scoredLocations.reduce(
+        function(totalScore, location) {
+
+          return (
+            totalScore +
+            Number(location.Score)
+          );
+
+        },
+        0
+      );
+
+
+    averageScore =
+      scoreTotal /
+      scoredLocations.length;
+
+  }
+
+
+  // Prefer the backend average, which is calculated from completed total scores out of 100.
+  if (Number.isFinite(Number(serverAverageScore))) {
+    averageScore = Number(serverAverageScore);
+  }
+
+  averageScore =
+    Number(
+      averageScore.toFixed(2)
+    );
+
+
+  const progressElement =
+    document.querySelector(
+      '[data-progress]'
+    );
+
+
+  const progressBar =
+    document.querySelector(
+      '[data-progress-bar]'
+    );
+
+
+  const progressCount =
+    document.querySelector(
+      '[data-progress-count]'
+    );
+
+
+  const completedElement =
+    document.querySelector(
+      '[data-completed]'
+    );
+
+
+  const pendingElement =
+    document.querySelector(
+      '[data-pending]'
+    );
+
+
+  const averageElement =
+    document.querySelector(
+      '[data-average]'
+    );
+
+
+  if (progressElement) {
+
+    progressElement.textContent =
+      progress + '%';
+
+  }
+
+
+  if (progressBar) {
+
+    progressBar.style.width =
+      progress + '%';
+
+  }
+
+
+  if (progressCount) {
+
+    progressCount.textContent =
+      completed +
+      ' / ' +
+      total +
+      ' ห้อง';
+
+  }
+
+
+  if (completedElement) {
+
+    completedElement.textContent =
+      completed;
+
+  }
+
+
+  if (pendingElement) {
+
+    pendingElement.textContent =
+      pending;
+
+  }
+
+
+  if (averageElement) {
+
+    averageElement.textContent =
+      averageScore.toFixed(2);
+
+  }
+
+
+  console.log(
+    'Summary:',
+    {
+      total,
+      completed,
+      pending,
+      progress,
+      scoredLocations:
+        scoredLocations.length,
+      averageScore
+    }
+  );
+
+}
+
+
+/* =========================================================
+   10. ASSESSMENT CRITERIA
+========================================================= */
+
+
+/* ---------------------------------------------------------
+   CLASSROOM
+--------------------------------------------------------- */
+
+const CLASSROOM_CRITERIA = [
+
+  {
+    title: 'ความสะอาดพื้น',
+    max: 15
+  },
+
+  {
+    title: 'จัดโต๊ะเก้าอี้',
+    max: 15
+  },
+
+  {
+    title: 'กระดาน/แปรง',
+    max: 10
+  },
+
+  {
+    title: 'เก็บอุปกรณ์',
+    max: 10
+  },
+
+  {
+    title: 'ถังขยะ/แยกขยะ',
+    max: 10
+  },
+
+  {
+    title: 'ป้ายนิเทศ/ผนัง',
+    max: 10
+  },
+
+  {
+    title: 'ปิดไฟ/พัดลม',
+    max: 15
+  },
+
+  {
+    title: 'ระเบียงหน้าห้อง',
+    max: 15
+  }
+
+];
+
+
+/* ---------------------------------------------------------
+   ZONE
+--------------------------------------------------------- */
+
+const ZONE_CRITERIA = [
+
+  {
+    title: 'พื้นผิวและขยะทั่วไป',
+
+    description:
+      'พื้นถนน ทางเดิน สนาม ลานกิจกรรม หรือโรงอาหาร สะอาด ปราศจากเศษขยะ ถุงพลาสติก เศษกระดาษ และใบไม้รกร้าง',
+
+    max: 20
+  },
+
+  {
+    title: 'ความสะอาดซอกมุมและพุ่มไม้',
+
+    description:
+      'ไม่มีเศษขยะแอบซุกซ่อนตามโคนต้นไม้ พุ่มไม้ ใต้โต๊ะ/ม้านั่ง ใต้สแตนเชียร์ หรือมุมอาคาร',
+
+    max: 15
+  },
+
+  {
+    title: 'ทางน้ำไหลและจุดล้าง',
+
+    description:
+      'รางน้ำ ท่อระบายน้ำ อ่างล้างมือ/ล้างจาน ไม่มีขยะหรือเศษอาหารอุดตัน น้ำไหลสะดวก ไร้คราบตะไคร่น้ำ',
+
+    max: 15
+  },
+
+  {
+    title: 'คราบสกปรกและสุขอนามัย',
+
+    description:
+      'ไม่มีคราบอาหาร คราบน้ำหวาน คราบโคลน หรือรอยเปรอะเปื้อนตามพื้น โต๊ะ ม้านั่ง และเสาภายนอก',
+
+    max: 10
+  },
+
+  {
+    title: 'การจัดการถังขยะและการแยกขยะ',
+
+    description:
+      'ขยะไม่ล้นถัง มีถุงรอง นำขยะไปทิ้งจุดพักเรียบร้อย ทิ้งขยะถูกประเภท และไม่มีขยะตกค้างรอบถัง',
+
+    max: 10
+  },
+
+  {
+    title: 'ความเป็นระเบียบของสิ่งของ',
+
+    description:
+      'โต๊ะ ม้านั่ง กระถางต้นไม้ อุปกรณ์กีฬา หรือสิ่งของในพื้นที่ จัดวางเป็นระเบียบ ไม่เกะกะทางเดิน',
+
+    max: 10
+  },
+
+  {
+    title: 'การจัดเก็บอุปกรณ์ทำความสะอาด',
+
+    description:
+      'ไม้กวาดทางมะพร้าว ที่ตักขยะ สายยาง และอุปกรณ์อื่นๆ ซักล้างทำความสะอาดและจัดเก็บเข้าที่เรียบร้อย',
+
+    max: 10
+  },
+
+  {
+    title: 'กลิ่นและความปลอดภัย',
+
+    description:
+      'ไม่มีกลิ่นขยะ/กลิ่นน้ำเน่า ไม่มีน้ำขัง (แหล่งยุง) พื้นไม่ลื่น และไม่มีเศษวัสดุแหลมคมที่เสี่ยงอันตราย',
+
+    max: 10
+  }
+
+];
+
+
+/* =========================================================
+   11. GET CRITERIA
+========================================================= */
+
+function getAssessmentCriteria(type) {
+
+  const normalizedType =
+    String(type || '')
+      .trim()
+      .toUpperCase();
+
+
+  if (
+    normalizedType === 'ZONE'
+  ) {
+
+    return ZONE_CRITERIA;
+
+  }
+
+
+  return CLASSROOM_CRITERIA;
+
+}
+
+
+/* =========================================================
+   12. RENDER ASSESSMENT CRITERIA
+========================================================= */
+
+function renderAssessmentCriteria(type) {
+
+  console.log(
+    '========================================'
+  );
+
+  console.log(
+    'RENDER ASSESSMENT CRITERIA'
+  );
+
+  console.log(
+    'TYPE:',
+    type
+  );
+
+
+  const container =
+    document.getElementById(
+      'assessment-criteria-container'
+    );
+
+
+  if (!container) {
+
+    console.error(
+      'ไม่พบ assessment-criteria-container'
+    );
+
+    return;
+
+  }
+
+
+  const normalizedType =
+    String(type || '')
+      .trim()
+      .toUpperCase();
+
+
+  const criteria =
+    getAssessmentCriteria(
+      normalizedType
+    );
+
+
+  if (
+    !Array.isArray(criteria) ||
+    criteria.length === 0
+  ) {
+
+    container.innerHTML = `
+
+      <div
+        class="
+          p-5
+          bg-red-50
+          border
+          border-red-200
+          rounded-xl
+          text-center
+          text-red-700
+        "
+      >
+        ไม่พบเกณฑ์การประเมิน
+      </div>
+
+    `;
+
+    return;
+
+  }
+
+
+  const typeLabel =
+    normalizedType === 'ZONE'
+      ? 'เขตพื้นที่'
+      : 'ห้องเรียน';
+
+
+  const totalMax =
+    criteria.reduce(
+      function(total, item) {
+
+        return (
+          total +
+          Number(item.max || 0)
+        );
+
+      },
+      0
+    );
+
+
+  const typeLabelElement =
+    document.getElementById(
+      'assessment-type-label'
+    );
+
+
+  if (typeLabelElement) {
+
+    typeLabelElement.textContent =
+      typeLabel +
+      ' • ' +
+      criteria.length +
+      ' หัวข้อ • ' +
+      'เต็ม ' +
+      totalMax +
+      ' คะแนน';
+
+  }
+
+
+  const totalLabelElement =
+    document.getElementById(
+      'assessment-total-label'
+    );
+
+
+  if (totalLabelElement) {
+
+    totalLabelElement.textContent =
+      'คะแนนเต็ม ' +
+      totalMax;
+
+  }
+
+
+  container.innerHTML =
+    criteria
+      .map(function(item, index) {
+
+        const title =
+          item.title ||
+          ('หัวข้อที่ ' + (index + 1));
+
+
+        const description =
+          item.description ||
+          '';
+
+
+        const max =
+          Number(item.max || 0);
+
+
+        return `
+
+          <div
+            class="
+              bg-surface-container-lowest
+              rounded-xl
+              p-4
+              border
+              border-container-border
+              shadow-sm
+            "
+          >
+
+            <div
+              class="
+                flex
+                items-start
+                justify-between
+                gap-3
+              "
+            >
+
+              <div class="flex-1 min-w-0">
+
+                <div
+                  class="
+                    flex
+                    items-start
+                    gap-2
+                  "
+                >
+
+                  <div
+                    class="
+                      w-7
+                      h-7
+                      rounded-full
+                      bg-primary/10
+                      text-primary
+                      flex
+                      items-center
+                      justify-center
+                      flex-shrink-0
+                      font-bold
+                      text-sm
+                    "
+                  >
+                    ${index + 1}
+                  </div>
+
+                  <div class="min-w-0">
+
+                    <div
+                      class="
+                        font-headline-md
+                        text-headline-md
+                        font-bold
+                        text-on-surface
+                      "
+                    >
+                      ${escapeInspectorHtml(title)}
+                    </div>
+
+                  </div>
+
+                </div>
+
+                ${
+                  description
+
+                    ? `
+
+                      <div
+                        class="
+                          mt-3
+                          ml-9
+                          text-sm
+                          leading-6
+                          text-on-surface-variant
+                        "
+                      >
+                        ${escapeInspectorHtml(description)}
+                      </div>
+
+                    `
+
+                    : ''
+                }
+
+              </div>
+
+
+              <div
+                class="
+                  flex
+                  flex-col
+                  items-end
+                  flex-shrink-0
+                "
+              >
+
+                <span
+                  class="
+                    text-xs
+                    text-on-surface-variant
+                  "
+                >
+                  เต็ม
+                </span>
+
+                <span
+                  class="
+                    font-bold
+                    text-primary
+                  "
+                >
+                  ${max}
+                </span>
+
+              </div>
+
+            </div>
+
+
+            <div class="mt-4">
+
+              <input
+                type="range"
+                min="0"
+                max="${max}"
+                value="0"
+                step="1"
+                data-criterion-index="${index}"
+                data-max="${max}"
+                class="w-full"
+              >
+
+              <div
+                class="
+                  flex
+                  justify-between
+                  items-center
+                  mt-2
+                  text-xs
+                  text-on-surface-variant
+                "
+              >
+
+                <span>
+                  0 คะแนน
+                </span>
+
+                <span
+                  class="
+                    font-bold
+                    text-primary
+                  "
+                  data-score-value="${index}"
+                >
+                  0 / ${max}
+                </span>
+
+                <span>
+                  ${max} คะแนน
+                </span>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        `;
+
+      })
+      .join('');
+
+
+  updateLiveScore();
+
+
+  console.log(
+    'Rendered criteria:',
+    criteria
+  );
+
+}
+
+
+/* =========================================================
+   13. OPEN ASSESSMENT MODAL
+========================================================= */
+
+function openAssessmentModalById(
+  locationId,
+  locationName,
+  locationType
+) {
+
+  console.log(
+    '========================================'
+  );
+
+  console.log(
+    'OPEN ASSESSMENT MODAL'
+  );
+
+  console.log(
+    'Location ID:',
+    locationId
+  );
+
+  console.log(
+    'Location Name:',
+    locationName
+  );
+
+  console.log(
+    'Location Type:',
+    locationType
+  );
+
+  console.log(
+    '========================================'
+  );
+
+
+  if (!locationId) {
+
+    alert(
+      'ไม่พบ Location ID'
+    );
+
+    return;
+
+  }
+
+
+  if (!inspectorUser) {
+
+    alert(
+      'ไม่พบข้อมูลผู้ตรวจ กรุณา Login ใหม่'
+    );
+
+    return;
+
+  }
+
+
+  const modal =
+    document.getElementById(
+      'assessment-modal'
+    );
+
+
+  if (!modal) {
+
+    alert(
+      'ไม่พบแบบฟอร์มประเมิน'
+    );
+
+    console.error(
+      'ไม่พบ #assessment-modal'
+    );
+
+    return;
+
+  }
+
+
+  const normalizedType =
+    String(locationType || '')
+      .trim()
+      .toUpperCase() ||
+      'CLASSROOM';
+
+
+  modal.dataset.locationId =
+    String(locationId);
+
+
+  modal.dataset.locationName =
+    String(locationName || '');
+
+
+  modal.dataset.locationType =
+    normalizedType;
+
+
+  const modalTitle =
+    modal.querySelector('h2');
+
+
+  if (modalTitle) {
+
+    modalTitle.textContent =
+      'แบบฟอร์มประเมิน - ' +
+      String(
+        locationName ||
+        locationId
+      );
+
+  }
+
+
+  renderAssessmentCriteria(
+    normalizedType
+  );
+
+
+  const sliders =
+    modal.querySelectorAll(
+      'input[type="range"]'
+    );
+
+
+  sliders.forEach(function(slider) {
+
+    slider.value =
+      '0';
+
+  });
+
+
+  updateLiveScore();
+
+
+  const textarea =
+    modal.querySelector(
+      'textarea'
+    );
+
+
+  if (textarea) {
+
+    textarea.value =
+      '';
+
+  }
+
+
+  const evidenceInput =
+    document.getElementById(
+      'evidence-photo'
+    );
+
+
+  const evidencePreview =
+    document.getElementById(
+      'evidence-preview'
+    );
+
+
+  if (evidenceInput) {
+
+    evidenceInput.value =
+      '';
+
+  }
+
+
+  if (evidencePreview) {
+
+    evidencePreview.innerHTML =
+      '';
+
+    evidencePreview.classList.add(
+      'hidden'
+    );
+
+  }
+
+
+  const submitButton =
+    modal.querySelector(
+      '[data-submit-inspection]'
+    );
+
+
+  if (submitButton) {
+
+    submitButton.disabled =
+      false;
+
+
+    submitButton.innerHTML = `
+
+      <span
+        class="material-symbols-outlined"
+      >
+        save
+      </span>
+
+      ยืนยันและส่งผล
+
+    `;
+
+  }
+
+
+  modal.classList.remove(
+    'translate-y-full'
+  );
+
+
+  console.log(
+    'เปิด Assessment Modal สำเร็จ'
+  );
+
+}
+
+
+/* =========================================================
+   14. COMPATIBILITY
+========================================================= */
+
+function openAssessmentModal(location) {
+
+  if (!location) {
+
+    alert(
+      'ไม่พบข้อมูล Location'
+    );
+
+    return;
+
+  }
+
+
+  const locationId =
+    location.Location_ID ||
+    location.locationId ||
+    location.id ||
+    '';
+
+
+  const locationName =
+    location.Location_Name ||
+    location.locationName ||
+    location.name ||
+    '-';
+
+
+  const locationType =
+    location.Type ||
+    location.type ||
+    'CLASSROOM';
+
+
+  openAssessmentModalById(
+    locationId,
+    locationName,
+    locationType
+  );
+
+}
+
+
+/* =========================================================
+   15. LIVE SCORE
+========================================================= */
+
+function updateLiveScore() {
+
+  const modal =
+    document.getElementById(
+      'assessment-modal'
+    );
+
+
+  if (!modal) {
+
+    return 0;
+
+  }
+
+
+  const sliders =
+    modal.querySelectorAll(
+      'input[type="range"]'
+    );
+
+
+  let total =
+    0;
+
+
+  sliders.forEach(function(slider, index) {
+
+    const value =
+      Number(
+        slider.value || 0
+      );
+
+
+    total +=
+      value;
+
+
+    const valueElement =
+      modal.querySelector(
+        '[data-score-value="' +
+        index +
+        '"]'
+      );
+
+
+    const max =
+      Number(
+        slider.dataset.max ||
+        slider.max ||
+        0
+      );
+
+
+    if (valueElement) {
+
+      valueElement.textContent =
+        value +
+        ' / ' +
+        max;
+
+    }
+
+  });
+
+
+  const liveScore =
+    document.getElementById(
+      'live-score'
+    );
+
+
+  if (liveScore) {
+
+    liveScore.textContent =
+      total;
+
+  }
+
+
+  return total;
+
+}
+
+
+/* =========================================================
+   16. SLIDER EVENTS
+========================================================= */
+
+document.addEventListener(
+  'input',
+  function(event) {
+
+    if (
+      event.target &&
+      event.target.matches(
+        '#assessment-modal input[type="range"]'
+      )
+    ) {
+
+      updateLiveScore();
+
+    }
+
+  }
+);
+
+
+/* =========================================================
+   17. SUBMIT ASSESSMENT
+========================================================= */
+
+function submitAssessment() {
+
+  /* -------------------------------------------------------
+     CHECK TIME
+  ------------------------------------------------------- */
+
+  const now =
+    new Date();
+
+
+  const currentMinutes =
+    (
+      now.getHours() * 60
+    ) +
+    now.getMinutes();
+
+
+  const openStart =
+    15 * 60;
+
+
+  const openEnd =
+    18 * 60;
+  const isOpen =
+    (currentMinutes >= openStart && currentMinutes <= openEnd);
+
+
+  if (!isOpen) {
+
+    const currentTime =
+      String(
+        now.getHours()
+      ).padStart(2, '0') +
+      ':' +
+      String(
+        now.getMinutes()
+      ).padStart(2, '0');
+
+
+    alert(
+      'ขณะนี้อยู่นอกเวลาตรวจ\n\n' +
+      'เวลาปัจจุบัน: ' +
+      currentTime +
+      '\n' +
+      'เวลาเปิดตรวจ: 15:00 - 18:00\n\n' +
+      'กรุณากลับมาส่งผลในช่วงเวลาที่กำหนด'
+    );
+
+
+    return;
+
+  }
+
+
+  const modal =
+    document.getElementById(
+      'assessment-modal'
+    );
+
+
+  if (!modal) {
+
+    alert(
+      'ไม่พบแบบฟอร์มประเมิน'
+    );
+
+    return;
+
+  }
+
+
+  /* -------------------------------------------------------
+     LOCATION
+  ------------------------------------------------------- */
+
+  const locationId =
+    modal.dataset.locationId;
+
+
+  const locationType =
+    String(
+      modal.dataset.locationType ||
+      'CLASSROOM'
+    )
+      .trim()
+      .toUpperCase();
+
+
+  if (!locationId) {
+
+    alert(
+      'ไม่พบ Location ID'
+    );
+
+    return;
+
+  }
+
+
+  /* -------------------------------------------------------
+     USER
+  ------------------------------------------------------- */
+
+  if (
+    !inspectorUser ||
+    !inspectorUser.Student_ID
+  ) {
+
+    alert(
+      'ไม่พบข้อมูลผู้ตรวจ กรุณา Login ใหม่'
+    );
+
+    return;
+
+  }
+
+
+  /* -------------------------------------------------------
+     CRITERIA
+  ------------------------------------------------------- */
+
+  const criteria =
+    getAssessmentCriteria(
+      locationType
+    );
+
+
+  if (
+    !Array.isArray(criteria) ||
+    criteria.length !== 8
+  ) {
+
+    alert(
+      'ไม่พบเกณฑ์ประเมินครบ 8 ข้อ'
+    );
+
+    console.error(
+      'Invalid criteria:',
+      criteria
+    );
+
+    return;
+
+  }
+
+
+  /* -------------------------------------------------------
+     SLIDERS
+  ------------------------------------------------------- */
+
+  const sliders =
+    modal.querySelectorAll(
+      'input[type="range"]'
+    );
+
+
+  if (
+    sliders.length !== criteria.length
+  ) {
+
+    alert(
+      'จำนวนช่องคะแนนไม่ตรงกับเกณฑ์การประเมิน'
+    );
+
+
+    console.error(
+      'จำนวน Slider:',
+      sliders.length,
+      'Criteria:',
+      criteria.length
+    );
+
+
+    return;
+
+  }
+
+
+  /* -------------------------------------------------------
+     MAX SCORES
+  ------------------------------------------------------- */
+
+  const maxScores =
+    criteria.map(function(item) {
+
+      return Number(
+        item.max || 0
+      );
+
+    });
+
+
+  console.log(
+    'Location Type:',
+    locationType
+  );
+
+
+  console.log(
+    'Max Scores:',
+    maxScores
+  );
+
+
+  /* -------------------------------------------------------
+     READ SCORES
+  ------------------------------------------------------- */
+
+  const scores =
+    Array.from(
+      sliders
+    )
+      .map(function(slider) {
+
+        return Number(
+          slider.value
+        );
+
+      });
+
+
+  console.log(
+    'Scores:',
+    scores
+  );
+
+
+  /* -------------------------------------------------------
+     VALIDATE
+  ------------------------------------------------------- */
+
+  for (
+    let i = 0;
+    i < scores.length;
+    i++
+  ) {
+
+    const score =
+      scores[i];
+
+
+    const maxScore =
+      maxScores[i];
+
+
+    if (
+      !Number.isFinite(score)
+    ) {
+
+      alert(
+        'คะแนนข้อที่ ' +
+        (i + 1) +
+        ' ไม่ถูกต้อง'
+      );
+
+      return;
+
+    }
+
+
+    if (
+      score < 0 ||
+      score > maxScore
+    ) {
+
+      alert(
+        'คะแนนข้อที่ ' +
+        (i + 1) +
+        ' ต้องอยู่ระหว่าง 0 ถึง ' +
+        maxScore
+      );
+
+      return;
+
+    }
+
+  }
+
+
+  /* -------------------------------------------------------
+     TOTAL
+  ------------------------------------------------------- */
+
+  const totalScore =
+    scores.reduce(
+      function(total, score) {
+
+        return total + score;
+
+      },
+      0
+    );
+
+
+  const totalMax =
+    maxScores.reduce(
+      function(total, max) {
+
+        return total + max;
+
+      },
+      0
+    );
+
+
+  console.log(
+    'Total Score:',
+    totalScore
+  );
+
+
+  console.log(
+    'Total Max:',
+    totalMax
+  );
+
+
+  if (
+    totalScore < 0 ||
+    totalScore > totalMax
+  ) {
+
+    alert(
+      'คะแนนรวมไม่ถูกต้อง'
+    );
+
+    return;
+
+  }
+
+
+  /* -------------------------------------------------------
+     REMARK
+  ------------------------------------------------------- */
+
+  const textarea =
+    modal.querySelector(
+      'textarea'
+    );
+
+
+  const remark =
+    textarea
+      ? textarea.value.trim()
+      : '';
+
+
+  /* -------------------------------------------------------
+     BUTTON
+  ------------------------------------------------------- */
+
+  const submitButton =
+    modal.querySelector(
+      '[data-submit-inspection]'
+    );
+
+
+  if (submitButton) {
+
+    submitButton.disabled =
+      true;
+
+
+    submitButton.innerHTML = `
+
+      <span
+        class="
+          material-symbols-outlined
+          animate-spin
+        "
+      >
+        progress_activity
+      </span>
+
+      กำลังบันทึก...
+
+    `;
+
+  }
+
+
+  /* -------------------------------------------------------
+     SEND FUNCTION
+  ------------------------------------------------------- */
+
+  /*
+     Upload path: keep the photo in the original submission payload.
+     The Worker creates a short-lived ticket and calls the Apps Script bridge
+     server-to-server, avoiding hidden iframe redirects and browser timeouts.
+  */
+  function sendInspection(photoData, photoUrl) {
+
+    console.log(
+      'ส่งข้อมูลไป Backend...',
+      {
+        locationId,
+        locationType,
+        scores,
+        totalScore,
+        remark,
+        photoUrl: photoUrl || '',
+        photoData:
+          photoData
+            ? {
+                fileName:
+                  photoData.fileName,
+
+                mimeType:
+                  photoData.mimeType
+              }
+            : null
+      }
+    );
+
+
+    google.script.run
+
+      .withSuccessHandler(
+        function(result) {
+
+          console.log(
+            'SUBMIT RESULT:',
+            result
+          );
+
+
+          /* ---------------------------------------------
+             ERROR
+          --------------------------------------------- */
+
+          if (
+            !result ||
+            result.success !== true
+          ) {
+
+            console.error(
+              'บันทึกไม่สำเร็จ:',
+              result
+            );
+
+
+            if (submitButton) {
+
+              submitButton.disabled =
+                false;
+
+
+              submitButton.innerHTML = `
+
+                <span
+                  class="material-symbols-outlined"
+                >
+                  save
+                </span>
+
+                ยืนยันและส่งผล
+
+              `;
+
+            }
+
+
+            alert(
+
+              result &&
+              (
+                result.error ||
+                result.message
+              )
+
+                ? (
+                    result.error ||
+                    result.message
+                  )
+
+                : 'ไม่สามารถบันทึกผลได้'
+
+            );
+
+
+            return;
+
+          }
+
+
+          /* ---------------------------------------------
+             DUPLICATE
+          --------------------------------------------- */
+
+          if (
+            result.duplicate === true
+          ) {
+
+            console.warn(
+              'พบรายการซ้ำ:',
+              result
+            );
+
+
+            if (submitButton) {
+
+              submitButton.disabled =
+                false;
+
+
+              submitButton.innerHTML = `
+
+                <span
+                  class="material-symbols-outlined"
+                >
+                  save
+                </span>
+
+                ยืนยันและส่งผล
+
+              `;
+
+            }
+
+
+            alert(
+              result.error ||
+              'รายการตรวจ Location นี้ถูกบันทึกแล้วในวันนี้'
+            );
+
+
+            return;
+
+          }
+
+
+          /* ---------------------------------------------
+             SUCCESS
+          --------------------------------------------- */
+
+          console.log(
+            'บันทึกสำเร็จ'
+          );
+
+
+          console.log(
+            'Log ID:',
+            result.logId
+          );
+
+
+          console.log(
+            'Photo URL:',
+            result.photoUrl
+          );
+
+
+          /* ---------------------------------------------
+             CLOSE
+          --------------------------------------------- */
+
+          modal.classList.add(
+            'translate-y-full'
+          );
+
+
+          /* ---------------------------------------------
+             RESET BUTTON
+          --------------------------------------------- */
+
+          if (submitButton) {
+
+            submitButton.disabled =
+              false;
+
+
+            submitButton.innerHTML = `
+
+              <span
+                class="material-symbols-outlined"
+              >
+                save
+              </span>
+
+              ยืนยันและส่งผล
+
+            `;
+
+          }
+
+
+          /* ---------------------------------------------
+             RESET SLIDERS
+          --------------------------------------------- */
+
+          sliders.forEach(function(slider) {
+
+            slider.value =
+              '0';
+
+          });
+
+
+          updateLiveScore();
+
+
+          /* ---------------------------------------------
+             RESET REMARK
+          --------------------------------------------- */
+
+          if (textarea) {
+
+            textarea.value =
+              '';
+
+          }
+
+
+          /* ---------------------------------------------
+             RESET PHOTO
+          --------------------------------------------- */
+
+          const evidenceInput =
+            document.getElementById(
+              'evidence-photo'
+            );
+
+
+          const evidencePreview =
+            document.getElementById(
+              'evidence-preview'
+            );
+
+
+          if (evidenceInput) {
+
+            evidenceInput.value =
+              '';
+
+          }
+
+
+          if (evidencePreview) {
+
+            evidencePreview.innerHTML =
+              '';
+
+            evidencePreview.classList.add(
+              'hidden'
+            );
+
+          }
+
+
+          /* ---------------------------------------------
+             SUCCESS MESSAGE
+          --------------------------------------------- */
+
+          alert(
+            'บันทึกผลการตรวจเรียบร้อยแล้ว'
+          );
+
+
+          /* ---------------------------------------------
+             RELOAD
+          --------------------------------------------- */
+
+          loadInspectorData(
+            inspectorSessionId
+          );
+
+        }
+      )
+
+      .withFailureHandler(
+        function(error) {
+
+          console.error(
+            'SUBMIT ERROR:',
+            error
+          );
+
+
+          if (submitButton) {
+
+            submitButton.disabled =
+              false;
+
+
+            submitButton.innerHTML = `
+
+              <span
+                class="material-symbols-outlined"
+              >
+                save
+              </span>
+
+              ยืนยันและส่งผล
+
+            `;
+
+          }
+
+
+          alert(
+
+            error &&
+            error.message
+
+              ? error.message
+
+              : 'เกิดข้อผิดพลาดในการส่งข้อมูล'
+
+          );
+
+        }
+      )
+
+      .submitInspection(
+        inspectorUser,
+        locationId,
+        scores,
+        photoData,
+        remark,
+        false,
+        inspectorUser.Student_ID || '',
+        photoUrl || ''
+      );
+
+  }
+
+
+  /* =======================================================
+     PHOTO
+  ======================================================= */
+
+  const evidenceInput =
+    document.getElementById(
+      'evidence-photo'
+    );
+
+
+  const evidenceFile =
+    evidenceInput &&
+    evidenceInput.files &&
+    evidenceInput.files[0];
+
+
+  /* -------------------------------------------------------
+     NO PHOTO
+  ------------------------------------------------------- */
+
+  if (!evidenceFile) {
+
+    console.log(
+      'ไม่มีรูปภาพ'
+    );
+
+    if (submitButton) {
+      submitButton.disabled = false;
+      submitButton.innerHTML = `
+        <span class="material-symbols-outlined">save</span>
+        ยืนยันและส่งผล
+      `;
+    }
+
+    alert('กรุณาแนบรูปหลักฐานก่อนส่งผลตรวจ');
+    return;
+
+  }
+
+
+  /* -------------------------------------------------------
+     IMAGE VALIDATION
+  ------------------------------------------------------- */
+
+  if (
+    !evidenceFile.type ||
+    !evidenceFile.type.startsWith(
+      'image/'
+    )
+  ) {
+
+    if (submitButton) {
+
+      submitButton.disabled =
+        false;
+
+
+      submitButton.innerHTML = `
+
+        <span
+          class="material-symbols-outlined"
+        >
+          save
+        </span>
+
+        ยืนยันและส่งผล
+
+      `;
+
+    }
+
+
+    alert(
+      'กรุณาเลือกไฟล์รูปภาพเท่านั้น'
+    );
+
+
+    return;
+
+  }
+
+
+  /* -------------------------------------------------------
+     FILE READER
+  ------------------------------------------------------- */
+
+  const reader =
+    new FileReader();
+
+
+  reader.onload =
+    function(event) {
+
+      try {
+
+        const dataUrl =
+          event.target.result;
+
+
+        const photoData = {
+
+          base64:
+            dataUrl,
+
+          mimeType:
+            evidenceFile.type ||
+            'image/jpeg',
+
+          fileName:
+            evidenceFile.name ||
+            'evidence.jpg'
+
+        };
+
+
+        console.log(
+          'PHOTO DATA READY:',
+          {
+            fileName:
+              photoData.fileName,
+
+            mimeType:
+              photoData.mimeType
+          }
+        );
+
+
+        sendInspection(
+          photoData
+        );
+
+      }
+
+      catch (error) {
+
+        console.error(
+          'PHOTO PROCESS ERROR:',
+          error
+        );
+
+
+        if (submitButton) {
+
+          submitButton.disabled =
+            false;
+
+
+          submitButton.innerHTML = `
+
+            <span
+              class="material-symbols-outlined"
+            >
+              save
+            </span>
+
+            ยืนยันและส่งผล
+
+          `;
+
+        }
+
+
+        alert(
+          'ไม่สามารถเตรียมรูปภาพได้'
+        );
+
+      }
+
+    };
+
+
+  reader.onerror =
+    function(error) {
+
+      console.error(
+        'FILE READ ERROR:',
+        error
+      );
+
+
+      if (submitButton) {
+
+        submitButton.disabled =
+          false;
+
+
+        submitButton.innerHTML = `
+
+          <span
+            class="material-symbols-outlined"
+          >
+            save
+          </span>
+
+          ยืนยันและส่งผล
+
+        `;
+
+      }
+
+
+      alert(
+        'ไม่สามารถอ่านไฟล์รูปภาพได้'
+      );
+
+    };
+
+
+  reader.readAsDataURL(
+    evidenceFile
+  );
+
+}
+
+
+/* =========================================================
+   18. CLOCK
+========================================================= */
+
+function updateInspectionClock() {
+
+  const timeElement =
+    document.getElementById(
+      'inspection-current-time'
+    );
+
+
+  const statusElement =
+    document.getElementById(
+      'inspection-open-text'
+    );
+
+
+  const dotElement =
+    document.getElementById(
+      'inspection-open-dot'
+    );
+
+
+  if (!timeElement) {
+
+    return;
+
+  }
+
+
+  const now =
+    new Date();
+
+
+  const hours =
+    now.getHours();
+
+
+  const minutes =
+    now.getMinutes();
+
+
+  const formattedHours =
+    String(hours)
+      .padStart(2, '0');
+
+
+  const formattedMinutes =
+    String(minutes)
+      .padStart(2, '0');
+
+
+  timeElement.textContent =
+    formattedHours +
+    ':' +
+    formattedMinutes;
+
+
+  const currentMinutes =
+    (hours * 60) +
+    minutes;
+
+
+  const openStart =
+    15 * 60;
+
+
+  const openEnd =
+    18 * 60;
+  const isOpen =
+    (currentMinutes >= openStart && currentMinutes <= openEnd);
+
+
+  if (statusElement) {
+
+    statusElement.textContent =
+      isOpen
+        ? 'OPEN'
+        : 'CLOSED';
+
+  }
+
+
+  if (dotElement) {
+
+    dotElement.classList.remove(
+      'bg-clean-success',
+      'bg-dirty-danger'
+    );
+
+
+    dotElement.classList.add(
+      isOpen
+        ? 'bg-clean-success'
+        : 'bg-dirty-danger'
+    );
+
+  }
+
+
+  console.log(
+    'Inspection Schedule:',
+    {
+      time:
+        formattedHours +
+        ':' +
+        formattedMinutes,
+
+      currentMinutes,
+
+      openStart,
+
+      openEnd,
+
+      status:
+        isOpen
+          ? 'OPEN'
+          : 'CLOSED'
+    }
+  );
+
+}
+
+
+/* =========================================================
+   19. LOGOUT
+========================================================= */
+
+function logoutInspector() {
+
+  console.log(
+    '========================================'
+  );
+
+  console.log(
+    'INSPECTOR LOGOUT'
+  );
+
+  console.log(
+    '========================================'
+  );
+
+
+  if (!inspectorSessionId) {
+
+    console.warn(
+      'ไม่พบ inspectorSessionId'
+    );
+
+
+    window.location.href =
+      '/';
+
+
+    return;
+
+  }
+
+
+  const confirmed =
+    confirm(
+      'ต้องการลงชื่อออกจากระบบหรือไม่?'
+    );
+
+
+  if (!confirmed) {
+
+    return;
+
+  }
+
+
+  const button =
+    document.querySelector(
+      'button[onclick="logoutInspector()"]'
+    );
+
+
+  if (button) {
+
+    button.disabled =
+      true;
+
+
+    button.innerHTML = `
+
+      <span
+        class="
+          material-symbols-outlined
+          animate-spin
+        "
+      >
+        progress_activity
+      </span>
+
+      <span>
+        กำลังลงชื่อออก...
+      </span>
+
+    `;
+
+  }
+
+
+  google.script.run
+
+    .withSuccessHandler(
+      function(result) {
+
+        console.log(
+          'Logout Result:',
+          result
+        );
+
+
+        if (
+          !result ||
+          result.success !== true
+        ) {
+
+          if (button) {
+
+            button.disabled =
+              false;
+
+
+            button.innerHTML = `
+
+              <span
+                class="material-symbols-outlined"
+              >
+                logout
+              </span>
+
+              <span>
+                ลงชื่อออก
+              </span>
+
+            `;
+
+          }
+
+
+          alert(
+
+            result &&
+            (
+              result.message ||
+              result.error
+            )
+
+              ? (
+                  result.message ||
+                  result.error
+                )
+
+              : 'ไม่สามารถลงชื่อออกได้'
+
+          );
+
+
+          return;
+
+        }
+
+
+        console.log(
+          'Logout สำเร็จ'
+        );
+
+
+        inspectorSessionId =
+          '';
+
+
+window.location.href =
+      '/';
+
+      }
+    )
+
+    .withFailureHandler(
+      function(error) {
+
+        console.error(
+          'Logout Error:',
+          error
+        );
+
+
+        if (button) {
+
+          button.disabled =
+            false;
+
+
+          button.innerHTML = `
+
+            <span
+              class="material-symbols-outlined"
+            >
+              logout
+            </span>
+
+            <span>
+              ลงชื่อออก
+            </span>
+
+          `;
+
+        }
+
+
+        alert(
+
+          error &&
+          error.message
+
+            ? error.message
+
+            : 'เกิดข้อผิดพลาดในการลงชื่อออก'
+
+        );
+
+      }
+    )
+
+    .logout(
+      inspectorSessionId
+    );
+
+}
+
+
+/* =========================================================
+   20. EVIDENCE PHOTO
+========================================================= */
+
+function initializeEvidencePhoto() {
+
+  const input =
+    document.getElementById(
+      'evidence-photo'
+    );
+
+
+  const button =
+    document.getElementById(
+      'evidence-photo-button'
+    );
+
+
+  const preview =
+    document.getElementById(
+      'evidence-preview'
+    );
+
+
+  if (
+    !input ||
+    !button
+  ) {
+
+    console.warn(
+      'ไม่พบ Evidence Photo Elements'
+    );
+
+    return;
+
+  }
+
+
+  button.addEventListener(
+    'click',
+    function() {
+
+      input.click();
+
+    }
+  );
+
+
+  input.addEventListener(
+    'change',
+    function() {
+
+      const file =
+        input.files &&
+        input.files[0];
+
+
+      if (!file) {
+
+        return;
+
+      }
+
+
+      if (
+        !file.type ||
+        !file.type.startsWith(
+          'image/'
+        )
+      ) {
+
+        alert(
+          'กรุณาเลือกไฟล์รูปภาพเท่านั้น'
+        );
+
+
+        input.value =
+          '';
+
+
+        return;
+
+      }
+
+
+      if (preview) {
+
+        const url =
+          URL.createObjectURL(
+            file
+          );
+
+
+        preview.innerHTML = `
+
+          <div class="mt-3">
+
+            <img
+              src="${url}"
+              class="
+                w-full
+                max-h-64
+                object-contain
+                rounded-xl
+                border
+                border-container-border
+              "
+            >
+
+            <div
+              class="
+                mt-2
+                text-sm
+                text-on-surface-variant
+                text-center
+              "
+            >
+              ${escapeInspectorHtml(file.name)}
+            </div>
+
+          </div>
+
+        `;
+
+
+        preview.classList.remove(
+          'hidden'
+        );
+
+      }
+
+    }
+  );
+
+}
+
+
+/* =========================================================
+   21. DOM READY
+========================================================= */
+
+document.addEventListener(
+  'DOMContentLoaded',
+  function() {
+
+    console.log(
+      '========================================'
+    );
+
+    console.log(
+      'INSPECTOR DOM READY'
+    );
+
+    console.log(
+      '========================================'
+    );
+
+
+    /* -----------------------------------------------------
+       CLOCK
+    ----------------------------------------------------- */
+
+    updateInspectionClock();
+
+
+    setInterval(
+      updateInspectionClock,
+      30000
+    );
+
+
+    /* -----------------------------------------------------
+       HEADER
+    ----------------------------------------------------- */
+
+    initializeInspectorHeader();
+
+
+    /* -----------------------------------------------------
+       PHOTO
+    ----------------------------------------------------- */
+
+    initializeEvidencePhoto();
+
+
+    /* -----------------------------------------------------
+       SESSION
+    ----------------------------------------------------- */
+
+    if (
+      !validateInspectorSession()
+    ) {
+
+      return;
+
+    }
+
+
+    /* -----------------------------------------------------
+       LOAD DATA
+    ----------------------------------------------------- */
+
+    console.log(
+      'กำลังโหลด Inspector Locations...'
+    );
+
+
+    loadInspectorData(
+      inspectorSessionId
+    );
+
+  }
+);
+
+
+/* =========================================================
+   END
+========================================================= */
+
+console.log(
+  '========================================'
+);
+
+console.log(
+  'INSPECTOR SCRIPT LOADED'
+);
+
+console.log(
+  'Session ID:',
+  inspectorSessionId
+);
+
+console.log(
+  'Inspector User:',
+  inspectorUser
+);
+
+console.log(
+  '========================================'
+);
+
+</script>
+
+</body>
+
+</html>

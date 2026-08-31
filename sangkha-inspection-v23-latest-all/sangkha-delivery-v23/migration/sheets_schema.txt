@@ -1,0 +1,32 @@
+[Users]
+HEADERS: Student_ID | PIN | Full_Name | Role | Assigned_Grade | Assigned_Type | Assigned_Locations
+COLUMN_COUNT: 7
+
+[Inspection_Logs]
+HEADERS: Log_ID | Date | Time | Location_ID | Inspector_ID | Score_Cat1 | Score_Cat2 | Score_Cat3 | Score_Cat4 | Score_Cat5 | Score_Cat6 | Score_Cat7 | Score_Cat8 | Total_Score | Photo_URL | Remark | Is_Proxy | Original_Inspector_ID
+COLUMN_COUNT: 18
+
+[Attendance_and_Proxy]
+HEADERS: Attendance_ID | Date | User_ID | ClockIn_Time | Status | Leave_Reason | Leave_Type | Recorded_By
+COLUMN_COUNT: 8
+
+[Locations]
+HEADERS: Location_ID | Location_Name | Grade_Level | Type | Is_SME
+COLUMN_COUNT: 5
+
+[Score_Edit_Requests]
+HEADERS: Request_ID | Inspection_Log_ID | Location_ID | Date | Requested_By | Old_Score | New_Score | Reason | Status | Approved_By
+
+[Maintenance_and_Edits]
+HEADERS: Issue_ID | Location_ID | Reported_By | Issue_Detail | Photo_URL | Status | Updated_By
+
+[Audit_Logs]
+HEADERS: Timestamp | User_ID | Action_Type | Target_Table | Before_Value | After_Value | Remark
+COLUMN_COUNT: 7
+
+[System_Settings]
+HEADERS: Active_Window_Start | Active_Window_End | Is_System_Locked | Academic_Term | Non_Inspection_Days
+
+[แก้รายชื่อ]
+HEADERS: รายชื่อตรวจเขต
+COLUMN_COUNT: 1

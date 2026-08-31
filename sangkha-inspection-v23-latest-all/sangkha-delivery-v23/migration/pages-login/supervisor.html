@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="th" style="">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Sangkha School - Supervisor Hub</title>
+
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700&amp;family=Sarabun:wght@400;700&amp;display=swap" rel="stylesheet" />
+
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-low": "#eff4ff",
+                        "on-secondary-container": "#6e5c00",
+                        "clean-success": "#10B981",
+                        "primary": "#ab0013",
+                        "tertiary-container": "#9d5c1e",
+                        "primary-fixed-dim": "#ffb4ac",
+                        "outline-variant": "#e6bdb9",
+                        "on-tertiary-container": "#ffeadd",
+                        "error-container": "#ffdad6",
+                        "error": "#ba1a1a",
+                        "surface-bg": "#F8FAFC",
+                        "on-error": "#ffffff",
+                        "on-secondary-fixed-variant": "#544600",
+                        "on-tertiary": "#ffffff",
+                        "container-border": "#E2E8F0",
+                        "tertiary-fixed": "#ffdcc3",
+                        "surface-dim": "#cbdbf5",
+                        "secondary-fixed": "#ffe16d",
+                        "on-tertiary-fixed-variant": "#6e3900",
+                        "surface": "#f8f9ff",
+                        "on-primary": "#ffffff",
+                        "on-secondary-fixed": "#221b00",
+                        "on-surface": "#0b1c30",
+                        "secondary-container": "#fcd400",
+                        "surface-tint": "#bf0618",
+                        "sme-special": "#8B5CF6",
+                        "primary-container": "#d31e24",
+                        "primary-fixed": "#ffdad6",
+                        "on-error-container": "#93000a",
+                        "on-surface-variant": "#5c403d",
+                        "inverse-on-surface": "#eaf1ff",
+                        "secondary": "#705d00",
+                        "on-primary-container": "#ffe9e7",
+                        "surface-container-highest": "#d3e4fe",
+                        "on-secondary": "#ffffff",
+                        "tertiary-fixed-dim": "#ffb77d",
+                        "inverse-surface": "#213145",
+                        "on-primary-fixed": "#410003",
+                        "surface-variant": "#d3e4fe",
+                        "background": "#f8f9ff",
+                        "surface-bright": "#f8f9ff",
+                        "maintenance-orange": "#F97316",
+                        "outline": "#916f6b",
+                        "on-tertiary-fixed": "#2f1500",
+                        "surface-container": "#e5eeff",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary-fixed-variant": "#93000f",
+                        "tertiary": "#7f4504",
+                        "pending-warning": "#F59E0B",
+                        "inverse-primary": "#ffb4ac",
+                        "on-background": "#0b1c30",
+                        "secondary-fixed-dim": "#e9c400",
+                        "surface-container-high": "#dce9ff",
+                        "dirty-danger": "#EF4444"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "gutter": "16px",
+                        "margin-desktop": "32px",
+                        "unit": "4px",
+                        "stack-comfortable": "24px",
+                        "margin-mobile": "16px",
+                        "stack-compact": "8px"
+                    },
+                    "fontFamily": {
+                        "label-bold": ["Sarabun"],
+                        "body-md": ["Sarabun"],
+                        "headline-md": ["Kanit"],
+                        "headline-lg": ["Kanit"],
+                        "label-caps": ["Kanit"],
+                        "headline-xl": ["Kanit"],
+                        "body-lg": ["Sarabun"],
+                        "body-sm": ["Sarabun"]
+                    },
+                    "fontSize": {
+                        "label-bold": ["12px", {
+                            "lineHeight": "1",
+                            "letterSpacing": "0.05em",
+                            "fontWeight": "700"
+                        }],
+                        "body-md": ["16px", {
+                            "lineHeight": "1.5",
+                            "fontWeight": "400"
+                        }],
+                        "headline-md": ["20px", {
+                            "lineHeight": "1.4",
+                            "fontWeight": "500"
+                        }],
+                        "headline-lg": ["24px", {
+                            "lineHeight": "1.3",
+                            "fontWeight": "500"
+                        }],
+                        "label-caps": ["11px", {
+                            "lineHeight": "1",
+                            "fontWeight": "600"
+                        }],
+                        "headline-xl": ["32px", {
+                            "lineHeight": "1.2",
+                            "fontWeight": "600"
+                        }],
+                        "body-lg": ["18px", {
+                            "lineHeight": "1.6",
+                            "fontWeight": "400"
+                        }],
+                        "body-sm": ["14px", {
+                            "lineHeight": "1.4",
+                            "fontWeight": "400"
+                        }]
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings:
+                'FILL' 0,
+                'wght' 400,
+                'GRAD' 0,
+                'opsz' 24;
+        }
+
+        .icon-fill {
+            font-variation-settings:
+                'FILL' 1,
+                'wght' 400,
+                'GRAD' 0,
+                'opsz' 24;
+        }
+    </style>
+  <script src="app-config.js"></script>
+  <script src="api-client.js"></script>
+</head>
+
+<body class="bg-surface-bg text-on-surface antialiased flex flex-col min-h-screen" data-mode="connect">
+
+    <!-- TopAppBar -->
+    <header class="bg-surface border-b border-container-border flex justify-between items-center w-full px-margin-mobile h-16 sticky top-0 z-40 shadow-sm">
+
+        <div class="flex items-center gap-3">
+
+            <img
+                alt="Student Council Logo"
+                class="w-10 h-10 object-contain rounded-full border border-container-border shadow-sm bg-white"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBQWWXVOE0F7e1kjIKvgvAZgr68Nrp39jZiz_57-8SvdLL5vo6VyWP-yi_6rs73nEFFL8R4hYATANYAeJs7MXF_npx_UNpDATu-Gr7uUppoYvlmoUqU6VRFggIfZ4OaMY1QsgOkIIAlcg3dvlYZ2mxueLg3jXH_z6sW_zJCsSjDN27gzjTFxCPJVGuShd5EiHuCsteCmvHkrw56Nium6NIWhMhzJjJxoMgHAhFVt2pj4aCH-AhiKfL37cHc4MaqCo4jvg"
+            />
+
+            <h1 class="font-headline-md text-headline-md font-bold text-primary">
+                Supervisor Hub
+            </h1>
+
+        </div>
+
+        <div class="flex items-center gap-2">
+
+            <button class="text-on-surface-variant hover:bg-surface-container rounded-full p-2 transition-colors active:opacity-80">
+                <span class="material-symbols-outlined">
+                    notifications
+                </span>
+            </button>
+
+            <button class="text-on-surface-variant hover:bg-surface-container rounded-full p-2 transition-colors active:opacity-80">
+                <span class="material-symbols-outlined">
+                    account_circle
+                </span>
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <!-- Main Content Canvas -->
+
+    <main class="flex-grow flex flex-col px-margin-mobile py-stack-comfortable pb-24 md:hidden">
+
+
+        <!-- User Profile Section -->
+
+        <section class="bg-surface-container-lowest rounded-xl p-4 shadow-sm border border-container-border mb-6 flex items-center gap-4">
+
+            <div class="w-16 h-16 rounded-full bg-surface-container flex items-center justify-center text-on-surface-variant flex-shrink-0">
+
+                <span class="material-symbols-outlined text-[40px]">
+                    account_circle
+                </span>
+
+            </div>
+
+            <div class="flex-grow">
+
+                <h2
+                    id="supervisorName"
+                    class="font-headline-md text-headline-md text-on-surface font-semibold"
+                >
+                    กำลังโหลด...
+                </h2>
+
+
+                <div class="flex flex-wrap gap-2 mt-1">
+
+                    <span
+                        id="supervisorId"
+                        class="inline-flex items-center px-2 py-1 rounded bg-secondary-container text-on-secondary-container font-label-caps text-label-caps uppercase"
+                    >
+                        Supervisor
+                    </span>
+
+                </div>
+
+
+                <p
+                    id="supervisorAssignment"
+                    class="font-body-sm text-body-sm text-on-surface-variant mt-2"
+                >
+                    กำลังโหลดข้อมูลพื้นที่...
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- Statistics -->
+
+        <div class="grid grid-cols-4 gap-2 mb-6">
+
+
+            <!-- ตรวจแล้ว -->
+
+            <div class="bg-surface-container-lowest p-2 rounded-lg border border-container-border text-center">
+
+                <p class="text-[10px] font-label-caps text-on-surface-variant">
+                    ตรวจแล้ว
+                </p>
+
+                <p
+                    id="statCompleted"
+                    class="text-headline-md font-bold text-primary"
+                >
+                    -
+                </p>
+
+            </div>
+
+
+            <!-- รอตรวจ -->
+
+            <div class="bg-surface-container-lowest p-2 rounded-lg border border-container-border text-center">
+
+                <p class="text-[10px] font-label-caps text-on-surface-variant">
+                    รอตรวจ
+                </p>
+
+                <p
+                    id="statPending"
+                    class="text-headline-md font-bold text-maintenance-orange"
+                >
+                    -
+                </p>
+
+            </div>
+
+
+            <!-- กรรมการ -->
+
+            <div class="bg-surface-container-lowest p-2 rounded-lg border border-container-border text-center">
+
+                <p class="text-[10px] font-label-caps text-on-surface-variant">
+                    กรรมการ
+                </p>
+
+                <p
+                    id="statCommittee"
+                    class="text-headline-md font-bold text-on-surface"
+                >
+                    -
+                </p>
+
+            </div>
+
+
+            <!-- คะแนนเฉลี่ย -->
+
+            <div class="bg-surface-container-lowest p-2 rounded-lg border border-container-border text-center">
+
+                <p class="text-[10px] font-label-caps text-on-surface-variant">
+                    คะแนนเฉลี่ย
+                </p>
+
+                <p
+                    id="statAverage"
+                    class="text-headline-md font-bold text-secondary"
+                >
+                    -
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <h3 class="font-headline-md text-headline-md text-on-surface mb-4">
+            เมนูหลัก (Main Menu)
+        </h3>
+
+
+        <!-- Bento Grid Main Menu -->
+
+        <div class="grid grid-cols-2 gap-4 mb-8">
+
+
+            <a
+                class="group bg-surface-container-lowest rounded-xl p-4 shadow-sm border border-container-border flex flex-col items-center justify-center text-center gap-2 transition-all active:scale-95 hover:border-primary aspect-square"
+                href="#"
+            >
+
+                <div class="w-10 h-10 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center">
+
+                    <span class="material-symbols-outlined">
+                        dashboard
+                    </span>
+
+                </div>
+
+                <h4 class="font-body-md font-medium text-on-surface">
+                    แดชบอร์ด
+                </h4>
+
+            </a>
+
+
+            <a
+                class="group bg-surface-container-lowest rounded-xl p-4 shadow-sm border border-container-border flex flex-col items-center justify-center text-center gap-2 transition-all active:scale-95 hover:border-primary aspect-square"
+                href="#"
+            >
+
+                <div class="w-10 h-10 rounded-full bg-surface-variant text-primary flex items-center justify-center">
+
+                    <span class="material-symbols-outlined">
+                        badge
+                    </span>
+
+                </div>
+
+                <h4 class="font-body-md font-medium text-on-surface">
+                    เช็กชื่อกรรมการ
+                </h4>
+
+            </a>
+
+
+            <a
+                class="group bg-surface-container-lowest rounded-xl p-4 shadow-sm border border-container-border flex flex-col items-center justify-center text-center gap-2 transition-all active:scale-95 hover:border-primary aspect-square"
+                href="#"
+            >
+
+                <div class="w-10 h-10 rounded-full bg-surface-variant text-primary flex items-center justify-center">
+
+                    <span class="material-symbols-outlined">
+                        person_search
+                    </span>
+
+                </div>
+
+                <h4 class="font-body-md font-medium text-on-surface">
+                    ประเมินลงแทน
+                </h4>
+
+            </a>
+
+
+            <a
+                class="group bg-surface-container-lowest rounded-xl p-4 shadow-sm border border-pending-warning flex flex-col items-center justify-center text-center gap-2 transition-all active:scale-95 hover:border-primary aspect-square"
+                href="#"
+            >
+
+                <div class="w-10 h-10 rounded-full bg-secondary-fixed text-secondary flex items-center justify-center">
+
+                    <span class="material-symbols-outlined">
+                        edit_note
+                    </span>
+
+                </div>
+
+                <h4 class="font-body-md font-medium text-on-surface">
+                    คำขอแก้ไขคะแนน
+                </h4>
+
+            </a>
+
+
+            <a
+                class="group bg-surface-container-lowest rounded-xl p-4 shadow-sm border border-container-border flex flex-col items-center justify-center text-center gap-2 transition-all active:scale-95 hover:border-primary aspect-square"
+                href="#"
+            >
+
+                <div class="w-10 h-10 rounded-full bg-orange-100 text-maintenance-orange flex items-center justify-center">
+
+                    <span class="material-symbols-outlined">
+                        build
+                    </span>
+
+                </div>
+
+                <h4 class="font-body-md font-medium text-on-surface">
+                    รับแจ้งซ่อมแซม
+                </h4>
+
+            </a>
+
+
+            <a
+                class="group bg-surface-container-lowest rounded-xl p-4 shadow-sm border border-container-border flex flex-col items-center justify-center text-center gap-2 transition-all active:scale-95 hover:border-primary aspect-square"
+                href="#"
+            >
+
+                <div class="w-10 h-10 rounded-full bg-surface text-on-surface-variant flex items-center justify-center border border-container-border">
+
+                    <span class="material-symbols-outlined">
+                        history
+                    </span>
+
+                </div>
+
+                <h4 class="font-body-md font-medium text-on-surface">
+                    ประวัติการตรวจ
+                </h4>
+
+            </a>
+
+        </div>
+
+
+        <!-- Footer Elements -->
+
+        <div class="mt-auto pt-6 flex flex-col items-center gap-4">
+
+
+            <button
+                class="w-full bg-primary text-white font-headline-md text-headline-md py-3 rounded-full hover:opacity-90 active:scale-95 transition-all flex items-center justify-center gap-2 shadow-md mb-4"
+            >
+
+                <span class="material-symbols-outlined">
+                    bar_chart
+                </span>
+
+                ดูสถิติ
+
+            </button>
+
+
+            <button
+                class="w-full bg-white border border-primary text-primary font-headline-md text-headline-md py-3 rounded-full hover:bg-primary-fixed active:bg-primary-fixed transition-colors flex items-center justify-center gap-2 shadow-sm"
+            >
+
+                <span class="material-symbols-outlined">
+                    logout
+                </span>
+
+                ลงชื่อออก
+
+            </button>
+
+
+            <p class="font-body-sm text-[12px] text-on-surface-variant text-center opacity-70">
+
+                จัดทำโดย นายยุทธนา เดือนขาว คณะกรรมการสภานักเรียน 69
+
+            </p>
+
+        </div>
+
+    </main>
+
+
+    <!-- Desktop Fallback -->
+
+    <div class="hidden md:flex flex-col items-center justify-center h-screen bg-surface-bg text-on-surface-variant">
+
+        <span class="material-symbols-outlined text-6xl mb-4 text-primary">
+            smartphone
+        </span>
+
+        <h2 class="font-headline-lg text-headline-lg">
+            Please view on a mobile device.
+        </h2>
+
+        <p class="font-body-md text-body-md mt-2">
+            This hub is optimized for mobile Inspector/Supervisor roles.
+        </p>
+
+    </div>
+
+
+    <!-- =========================================
+         SUPERVISOR JAVASCRIPT
+    ========================================== -->
+
+<script>
+
+document.addEventListener('DOMContentLoaded', function () {
+
+    // =========================================
+    // SESSION / USER DATA
+    // =========================================
+
+    const sessionId =
+        new URLSearchParams(window.location.search).get('sessionId') ||
+        sessionStorage.getItem('sessionId') ||
+        '';
+
+    const user =
+        JSON.parse(sessionStorage.getItem('user') || '{}');
+
+
+    console.log('========================================');
+    console.log('SUPERVISOR PAGE');
+    console.log('Session ID:', sessionId);
+    console.log('User:', user);
+    console.log('Role:', user.Role);
+    console.log('========================================');
+
+
+    // =========================================
+    // ELEMENTS
+    // =========================================
+
+    const supervisorName =
+        document.getElementById('supervisorName');
+
+    const supervisorId =
+        document.getElementById('supervisorId');
+
+    const supervisorAssignment =
+        document.getElementById('supervisorAssignment');
+
+
+    // =========================================
+    // CHECK USER
+    // =========================================
+
+    const role =
+        String(user.Role || '')
+            .trim()
+            .toLowerCase();
+
+
+    if (role !== 'supervisor') {
+
+        console.error(
+            'Invalid Supervisor Role:',
+            role
+        );
+
+        supervisorName.textContent =
+            'ไม่มีสิทธิ์เข้าถึง';
+
+        supervisorId.textContent =
+            'Invalid Role';
+
+        supervisorAssignment.textContent =
+            'บัญชีนี้ไม่ได้เป็น Supervisor';
+
+        return;
+
+    }
+
+
+    // =========================================
+    // USER PROFILE
+    // =========================================
+
+    supervisorName.textContent =
+        user.Full_Name ||
+        'ไม่พบชื่อผู้ใช้งาน';
+
+
+    supervisorId.textContent =
+        'Supervisor | ID: ' +
+        (
+            user.Student_ID ||
+            '-'
+        );
+
+
+    // =========================================
+    // ASSIGNMENT
+    // =========================================
+
+    const assignedGrade =
+        String(
+            user.Assigned_Grade || ''
+        ).trim();
+
+
+    const assignedType =
+        String(
+            user.Assigned_Type || ''
+        )
+        .trim()
+        .toUpperCase();
+
+
+    let assignmentText =
+        '';
+
+
+    if (assignedType === 'CLASSROOM') {
+
+        assignmentText =
+            'ห้องเรียน ม.' +
+            assignedGrade;
+
+    }
+    else if (assignedType === 'ZONE') {
+
+        assignmentText =
+            'เขตพื้นที่ ม.' +
+            assignedGrade;
+
+    }
+    else {
+
+        assignmentText =
+            'พื้นที่ ม.' +
+            assignedGrade;
+
+    }
+
+
+    supervisorAssignment.textContent =
+        'เขตรับผิดชอบ: ' +
+        assignmentText;
+
+
+    // =========================================
+    // FIND STAT ELEMENTS
+    // =========================================
+
+    const statCards =
+        document.querySelectorAll(
+            'main .grid.grid-cols-4 > div'
+        );
+
+
+    if (!statCards || statCards.length < 4) {
+
+        console.error(
+            'ไม่พบ Stat Cards ครบ 4 ช่อง'
+        );
+
+        return;
+
+    }
+
+
+    const completedElement =
+        statCards[0].querySelector(
+            'p:last-child'
+        );
+
+
+    const pendingElement =
+        statCards[1].querySelector(
+            'p:last-child'
+        );
+
+
+    const committeeElement =
+        statCards[2].querySelector(
+            'p:last-child'
+        );
+
+
+    const averageElement =
+        statCards[3].querySelector(
+            'p:last-child'
+        );
+
+
+    // =========================================
+    // LOADING STATE
+    // =========================================
+
+    completedElement.textContent =
+        '...';
+
+    pendingElement.textContent =
+        '...';
+
+    committeeElement.textContent =
+        '...';
+
+    averageElement.textContent =
+        '...';
+
+
+    // =========================================
+    // LOAD SUPERVISOR DASHBOARD
+    // =========================================
+
+    google.script.run
+
+        .withSuccessHandler(function (result) {
+
+            console.log(
+                'Supervisor Dashboard:',
+                result
+            );
+
+
+            // -------------------------------------
+            // BACKEND ERROR
+            // -------------------------------------
+
+            if (
+                !result ||
+                result.success !== true
+            ) {
+
+                console.error(
+                    'Dashboard Error:',
+                    result
+                );
+
+                completedElement.textContent =
+                    '-';
+
+                pendingElement.textContent =
+                    '-';
+
+                committeeElement.textContent =
+                    '-';
+
+                averageElement.textContent =
+                    '-';
+
+                return;
+
+            }
+
+
+            // =====================================
+            // STATS
+            // =====================================
+
+            const stats =
+                result.stats || {};
+
+
+            // -------------------------------------
+            // COMPLETED
+            // -------------------------------------
+
+            completedElement.textContent =
+                Number(
+                    stats.completed || 0
+                );
+
+
+            // -------------------------------------
+            // PENDING
+            // -------------------------------------
+
+            pendingElement.textContent =
+                Number(
+                    stats.pending || 0
+                );
+
+
+            // -------------------------------------
+            // COMMITTEE
+            // -------------------------------------
+
+            committeeElement.textContent =
+                stats.committee === null ||
+                stats.committee === undefined ||
+                stats.committee === ''
+                    ? '-'
+                    : stats.committee;
+
+
+            // -------------------------------------
+            // AVERAGE
+            // -------------------------------------
+
+            averageElement.textContent =
+                stats.average === null ||
+                stats.average === undefined
+                    ? '-'
+                    : Number(
+                        stats.average
+                    ).toFixed(2);
+
+
+            // =====================================
+            // SUCCESS
+            // =====================================
+
+            console.log(
+                'Supervisor dashboard loaded successfully'
+            );
+
+        })
+
+        .withFailureHandler(function (error) {
+
+            console.error(
+                'getSupervisorDashboard failed:',
+                error
+            );
+
+
+            completedElement.textContent =
+                '-';
+
+            pendingElement.textContent =
+                '-';
+
+            committeeElement.textContent =
+                '-';
+
+            averageElement.textContent =
+                '-';
+
+        })
+
+        .getSupervisorDashboard(user);
+
+
+});
+
+</script>
+</body>
+</html>

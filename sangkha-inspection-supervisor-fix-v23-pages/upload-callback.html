@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="th">
+<head><meta charset="utf-8"><title>Upload callback</title></head>
+<body>
+<script>
+(function () {
+  var params = new URLSearchParams(location.search);
+  var raw = params.get('upload');
+  var data;
+  try { data = raw ? JSON.parse(raw) : { success: false, message: 'ไม่พบผลอัปโหลดรูป' }; }
+  catch (error) { data = { success: false, message: 'ผลอัปโหลดรูปอ่านไม่ได้' }; }
+  window.parent.postMessage({ type: 'SANGKHA_DRIVE_UPLOAD', data: data }, location.origin);
+})();
+</script>
+<p>กำลังส่งผลการอัปโหลดกลับไปยังระบบ...</p>
+</body>
+</html>

@@ -1,0 +1,2403 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Sangkha Inspection</title>
+
+  <style>
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+
+      margin: 0;
+
+      min-height: 100vh;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      font-family:
+        Arial,
+        "Noto Sans Thai",
+        sans-serif;
+
+      background: #f5f7fa;
+
+      color: #111827;
+
+    }
+
+    .container {
+
+      width: min(90%, 600px);
+
+      padding: 32px;
+
+      background: #ffffff;
+
+      border-radius: 18px;
+
+      box-shadow:
+        0 10px 35px rgba(0, 0, 0, 0.08);
+
+    }
+
+    h1 {
+
+      margin: 0 0 10px;
+
+      font-size: 28px;
+
+    }
+
+    .description {
+
+      margin: 0;
+
+      color: #6b7280;
+
+    }
+
+    .status {
+
+      margin-top: 24px;
+
+      padding: 18px;
+
+      border-radius: 12px;
+
+      background: #f3f4f6;
+
+      color: #374151;
+
+      line-height: 1.7;
+
+    }
+
+    .success {
+
+      background: #dcfce7;
+
+      color: #166534;
+
+    }
+
+    .error {
+
+      background: #fee2e2;
+
+      color: #991b1b;
+
+    }
+
+    .loading {
+
+      background: #eff6ff;
+
+      color: #1d4ed8;
+
+    }
+
+    button {
+
+      margin-top: 20px;
+
+      width: 100%;
+
+      padding: 13px 18px;
+
+      border: none;
+
+      border-radius: 10px;
+
+      background: #2563eb;
+
+      color: white;
+
+      font-size: 16px;
+
+      cursor: pointer;
+
+    }
+
+    button:hover {
+
+      background: #1d4ed8;
+
+    }
+
+    button:disabled {
+
+      opacity: 0.6;
+
+      cursor: not-allowed;
+
+    }
+
+    .user-info {
+
+      margin-top: 15px;
+
+      padding: 15px;
+
+      border-radius: 10px;
+
+      background: rgba(255, 255, 255, 0.65);
+
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+
+  <!-- =========================================
+       MAIN CONTAINER
+  ========================================== -->
+
+  <div class="container">
+
+
+    <!-- =======================================
+         HEADER
+    ======================================== -->
+
+    <h1>
+      Sangkha Inspection
+    </h1>
+
+    <p class="description">
+      ระบบตรวจสอบความสะอาด
+    </p>
+
+
+    <!-- =======================================
+         SYSTEM STATUS
+    ======================================== -->
+
+    <div
+      id="status"
+      class="status loading"
+    >
+      กำลังตรวจสอบ Session...
+    </div>
+
+
+    <!-- =======================================
+         DASHBOARD
+    ======================================== -->
+
+    <div
+      id="dashboard"
+      style="margin-top:24px;"
+    >
+
+
+      <!-- START INSPECTION BUTTON -->
+
+      <button
+        type="button"
+        onclick="openInspectionForm()"
+        style="
+          margin-top:18px;
+          width:100%;
+          padding:14px;
+          border:none;
+          border-radius:12px;
+          background:#111827;
+          color:white;
+          font-size:16px;
+          font-weight:600;
+          cursor:pointer;
+        "
+      >
+        + เริ่มตรวจสถานที่
+      </button>
+
+
+      <!-- =====================================
+           LOCATION SUMMARY
+      ====================================== -->
+
+      <div
+        style="
+          display:grid;
+          grid-template-columns:
+            repeat(
+              auto-fit,
+              minmax(180px,1fr)
+            );
+          gap:14px;
+          margin-top:14px;
+        "
+      >
+
+
+        <!-- TOTAL LOCATIONS -->
+
+        <div
+          style="
+            padding:20px;
+            border-radius:16px;
+            background:#ffffff;
+            border:1px solid #e5e7eb;
+            box-shadow:
+              0 4px 15px
+              rgba(0,0,0,0.05);
+          "
+        >
+
+          <div
+            style="
+              font-size:14px;
+              color:#6b7280;
+            "
+          >
+            Locations ทั้งหมด
+          </div>
+
+          <div
+            id="totalLocations"
+            style="
+              margin-top:8px;
+              font-size:32px;
+              font-weight:700;
+              color:#111827;
+            "
+          >
+            -
+          </div>
+
+        </div>
+
+
+        <!-- CLASSROOM -->
+
+        <div
+          style="
+            padding:20px;
+            border-radius:16px;
+            background:#ffffff;
+            border:1px solid #e5e7eb;
+            box-shadow:
+              0 4px 15px
+              rgba(0,0,0,0.05);
+          "
+        >
+
+          <div
+            style="
+              font-size:14px;
+              color:#6b7280;
+            "
+          >
+            ห้องเรียน
+          </div>
+
+          <div
+            id="classroomCount"
+            style="
+              margin-top:8px;
+              font-size:32px;
+              font-weight:700;
+              color:#2563eb;
+            "
+          >
+            -
+          </div>
+
+        </div>
+
+
+        <!-- ZONE -->
+
+        <div
+          style="
+            padding:20px;
+            border-radius:16px;
+            background:#ffffff;
+            border:1px solid #e5e7eb;
+            box-shadow:
+              0 4px 15px
+              rgba(0,0,0,0.05);
+          "
+        >
+
+          <div
+            style="
+              font-size:14px;
+              color:#6b7280;
+            "
+          >
+            เขตพื้นที่
+          </div>
+
+          <div
+            id="areaCount"
+            style="
+              margin-top:8px;
+              font-size:32px;
+              font-weight:700;
+              color:#7c3aed;
+            "
+          >
+            -
+          </div>
+
+        </div>
+
+
+        <!-- SME -->
+
+        <div
+          style="
+            padding:20px;
+            border-radius:16px;
+            background:#ffffff;
+            border:1px solid #e5e7eb;
+            box-shadow:
+              0 4px 15px
+              rgba(0,0,0,0.05);
+          "
+        >
+
+          <div
+            style="
+              font-size:14px;
+              color:#6b7280;
+            "
+          >
+            ห้อง SME
+          </div>
+
+          <div
+            id="smeCount"
+            style="
+              margin-top:8px;
+              font-size:32px;
+              font-weight:700;
+              color:#8b5cf6;
+            "
+          >
+            -
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- =====================================
+           INSPECTION SUMMARY
+      ====================================== -->
+
+      <div
+        style="
+          margin-top:18px;
+          padding:22px;
+          border-radius:16px;
+          background:#ffffff;
+          border:1px solid #e5e7eb;
+          box-shadow:
+            0 4px 15px
+            rgba(0,0,0,0.05);
+        "
+      >
+
+        <h2
+          style="
+            margin:0;
+            font-size:20px;
+            color:#111827;
+          "
+        >
+          สถานะการตรวจสอบ
+        </h2>
+
+
+        <div
+          style="
+            display:grid;
+            grid-template-columns:
+              repeat(
+                auto-fit,
+                minmax(180px,1fr)
+              );
+            gap:14px;
+            margin-top:18px;
+          "
+        >
+
+
+          <!-- TOTAL LOGS -->
+
+          <div
+            style="
+              padding:18px;
+              border-radius:12px;
+              background:#f8fafc;
+            "
+          >
+
+            <div
+              style="
+                color:#6b7280;
+                font-size:14px;
+              "
+            >
+              รายการตรวจทั้งหมด
+            </div>
+
+            <div
+              id="totalLogs"
+              style="
+                margin-top:6px;
+                font-size:26px;
+                font-weight:700;
+              "
+            >
+              -
+            </div>
+
+          </div>
+
+
+          <!-- INSPECTED -->
+
+          <div
+            style="
+              padding:18px;
+              border-radius:12px;
+              background:#ecfdf5;
+            "
+          >
+
+            <div
+              style="
+                color:#047857;
+                font-size:14px;
+              "
+            >
+              ตรวจแล้ว
+            </div>
+
+            <div
+              id="inspectedCount"
+              style="
+                margin-top:6px;
+                font-size:26px;
+                font-weight:700;
+                color:#047857;
+              "
+            >
+              -
+            </div>
+
+          </div>
+
+
+          <!-- PENDING -->
+
+          <div
+            style="
+              padding:18px;
+              border-radius:12px;
+              background:#fff7ed;
+            "
+          >
+
+            <div
+              style="
+                color:#c2410c;
+                font-size:14px;
+              "
+            >
+              รอตรวจ
+            </div>
+
+            <div
+              id="pendingCount"
+              style="
+                margin-top:6px;
+                font-size:26px;
+                font-weight:700;
+                color:#c2410c;
+              "
+            >
+              -
+            </div>
+
+          </div>
+
+
+          <!-- AVERAGE SCORE -->
+
+          <div
+            style="
+              padding:18px;
+              border-radius:12px;
+              background:#eff6ff;
+            "
+          >
+
+            <div
+              style="
+                color:#1d4ed8;
+                font-size:14px;
+              "
+            >
+              คะแนนเฉลี่ย
+            </div>
+
+            <div
+              id="averageScore"
+              style="
+                margin-top:6px;
+                font-size:26px;
+                font-weight:700;
+                color:#1d4ed8;
+              "
+            >
+              -
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- =======================================
+         INSPECTION FORM
+    ======================================== -->
+
+    <div
+      id="inspectionPanel"
+      style="
+        display:none;
+        margin-top:20px;
+        padding:22px;
+        border-radius:16px;
+        background:#ffffff;
+        border:1px solid #e5e7eb;
+        box-shadow:
+          0 4px 15px
+          rgba(0,0,0,0.05);
+      "
+    >
+
+      <h2
+        style="
+          margin:0;
+          font-size:20px;
+        "
+      >
+        บันทึกผลการตรวจ
+      </h2>
+
+
+      <!-- LOCATION -->
+
+      <div
+        style="
+          margin-top:18px;
+        "
+      >
+
+        <label
+          style="
+            display:block;
+            margin-bottom:8px;
+            font-weight:600;
+          "
+        >
+          สถานที่ตรวจ
+        </label>
+
+        <select
+          id="inspectionLocation"
+          style="
+            width:100%;
+            padding:13px;
+            border:1px solid #d1d5db;
+            border-radius:10px;
+            font-size:16px;
+          "
+        >
+
+          <option value="">
+            -- เลือกสถานที่ --
+          </option>
+
+        </select>
+
+      </div>
+
+
+      <!-- SCORES -->
+
+      <div
+        style="
+          margin-top:20px;
+        "
+      >
+
+        <h3
+          style="
+            margin:0 0 14px;
+            font-size:17px;
+          "
+        >
+          คะแนนการตรวจ
+        </h3>
+
+        <div
+          id="scoreContainer"
+          style="
+            display:grid;
+            gap:12px;
+          "
+        ></div>
+
+      </div>
+
+
+      <!-- REMARK -->
+
+      <div
+        style="
+          margin-top:18px;
+        "
+      >
+
+        <label
+          style="
+            display:block;
+            margin-bottom:8px;
+            font-weight:600;
+          "
+        >
+          หมายเหตุ
+        </label>
+
+        <textarea
+          id="inspectionRemark"
+          rows="4"
+          placeholder="กรอกหมายเหตุเพิ่มเติม (ถ้ามี)"
+          style="
+            width:100%;
+            padding:13px;
+            border:1px solid #d1d5db;
+            border-radius:10px;
+            resize:vertical;
+            font-family:inherit;
+            font-size:15px;
+          "
+        ></textarea>
+
+      </div>
+
+
+      <!-- SUBMIT -->
+
+      <button
+        id="submitInspectionButton"
+        type="button"
+        onclick="submitInspectionForm()"
+        style="
+          margin-top:20px;
+          width:100%;
+          padding:14px;
+          border:none;
+          border-radius:10px;
+          background:#2563eb;
+          color:white;
+          font-size:16px;
+          font-weight:600;
+          cursor:pointer;
+        "
+      >
+        บันทึกผลการตรวจ
+      </button>
+
+
+      <!-- MESSAGE -->
+
+      <div
+        id="inspectionMessage"
+        style="
+          margin-top:15px;
+          display:none;
+          padding:12px;
+          border-radius:10px;
+          line-height:1.6;
+        "
+      ></div>
+
+    </div>
+
+  </div>
+
+
+```html
+```html
+<script>
+
+
+/* =================================================
+   SERVER SESSION
+================================================= */
+
+/*
+ * อ่าน sessionId จาก URL
+ * ตัวอย่าง:
+ * ?page=index&sessionId=xxxxxxxx
+ */
+
+const urlParams =
+    new URLSearchParams(
+        window.location.search
+    );
+
+const SERVER_SESSION_ID =
+    urlParams.get('sessionId') || '';
+
+console.log(
+    'SERVER_SESSION_ID:',
+    SERVER_SESSION_ID
+);
+
+/* =================================================
+   GLOBAL DATA
+================================================= */
+
+window.APP_DATA =
+    null;
+
+
+window.DASHBOARD_DATA =
+    null;
+
+
+/* =================================================
+   SESSION
+================================================= */
+
+function getStoredSessionId() {
+
+    console.log(
+        '========================================'
+    );
+
+
+    console.log(
+        'ตรวจสอบ Session'
+    );
+
+
+    // =========================================
+    // 1. SERVER SESSION
+    // =========================================
+
+    const serverSessionId =
+        String(
+            SERVER_SESSION_ID || ''
+        ).trim();
+
+
+    console.log(
+        'Session จาก Server:',
+        serverSessionId
+            ? serverSessionId
+            : '(ไม่มี)'
+    );
+
+
+    if (serverSessionId) {
+
+        try {
+
+            sessionStorage.setItem(
+                'sessionId',
+                serverSessionId
+            );
+
+        } catch (error) {
+
+            console.error(
+                'บันทึก Server Session ไม่สำเร็จ:',
+                error
+            );
+
+        }
+
+
+        console.log(
+            'ใช้ Session จาก Server'
+        );
+
+
+        return serverSessionId;
+
+    }
+
+
+    // =========================================
+    // 2. URL SESSION
+    // =========================================
+
+    let urlSessionId =
+        '';
+
+
+    try {
+
+        const params =
+            new URLSearchParams(
+                window.location.search
+            );
+
+
+        urlSessionId =
+            String(
+                params.get(
+                    'sessionId'
+                ) || ''
+            ).trim();
+
+    } catch (error) {
+
+        console.error(
+            'อ่าน Session จาก URL ไม่สำเร็จ:',
+            error
+        );
+
+    }
+
+
+    console.log(
+        'Session จาก URL:',
+        urlSessionId
+            ? urlSessionId
+            : '(ไม่มี)'
+    );
+
+
+    if (urlSessionId) {
+
+        try {
+
+            sessionStorage.setItem(
+                'sessionId',
+                urlSessionId
+            );
+
+        } catch (error) {
+
+            console.error(
+                'บันทึก URL Session ไม่สำเร็จ:',
+                error
+            );
+
+        }
+
+
+        return urlSessionId;
+
+    }
+
+
+    // =========================================
+    // 3. SESSION STORAGE
+    // =========================================
+
+    let storedSessionId =
+        '';
+
+
+    try {
+
+        storedSessionId =
+            String(
+                sessionStorage.getItem(
+                    'sessionId'
+                ) || ''
+            ).trim();
+
+    } catch (error) {
+
+        console.error(
+            'อ่าน Session Storage ไม่สำเร็จ:',
+            error
+        );
+
+    }
+
+
+    console.log(
+        'Session จาก Storage:',
+        storedSessionId
+            ? storedSessionId
+            : '(ไม่มี)'
+    );
+
+
+    console.log(
+        '========================================'
+    );
+
+
+    return storedSessionId || null;
+
+}
+
+
+/* =================================================
+   INITIALIZE
+================================================= */
+
+function initApp() {
+
+    console.log(
+        '========================================'
+    );
+
+
+    console.log(
+        'INITIALIZE APP'
+    );
+
+
+    console.log(
+        'Current URL:',
+        window.location.href
+    );
+
+
+    console.log(
+        'SERVER SESSION:',
+        SERVER_SESSION_ID
+    );
+
+
+    // =========================================
+    // GET SESSION
+    // =========================================
+
+    const sessionId =
+        getStoredSessionId();
+
+
+    console.log(
+        'Session ID ที่ระบบใช้:',
+        sessionId
+    );
+
+
+    // =========================================
+    // NO SESSION
+    // =========================================
+
+    if (!sessionId) {
+
+        showError(
+            'ไม่พบ Session กรุณาเข้าสู่ระบบใหม่'
+        );
+
+
+        return;
+
+    }
+
+
+    const status =
+        document.getElementById(
+            'status'
+        );
+
+
+    if (status) {
+
+        status.className =
+            'status loading';
+
+
+        status.innerHTML =
+            'กำลังตรวจสอบ Session...';
+
+    }
+
+
+    // =========================================
+    // BACKEND SESSION CHECK
+    // =========================================
+
+    google.script.run
+
+        .withSuccessHandler(
+            function(sessionResult) {
+
+                console.log(
+                    'SESSION RESULT:',
+                    sessionResult
+                );
+
+
+                // ---------------------------------
+                // INVALID
+                // ---------------------------------
+
+                if (
+                    !sessionResult ||
+                    sessionResult.success !== true
+                ) {
+
+                    showError(
+                        sessionResult?.message ||
+                        'Session ไม่ถูกต้องหรือหมดอายุ'
+                    );
+
+
+                    return;
+
+                }
+
+
+                console.log(
+                    'Session ผ่าน ✅'
+                );
+
+
+                // =================================
+                // USER INFO
+                // =================================
+
+                if (status) {
+
+                    status.className =
+                        'status success';
+
+
+                    status.innerHTML = `
+
+                        <strong>
+                            Session ผ่าน ✅
+                        </strong>
+
+                        <div class="user-info">
+
+                            <div>
+                                <strong>รหัส:</strong>
+                                ${escapeHtml(
+                                    sessionResult.user?.Student_ID || '-'
+                                )}
+                            </div>
+
+                            <div>
+                                <strong>ชื่อ:</strong>
+                                ${escapeHtml(
+                                    sessionResult.user?.Full_Name || '-'
+                                )}
+                            </div>
+
+                            <div>
+                                <strong>Role:</strong>
+                                ${escapeHtml(
+                                    sessionResult.user?.Role || '-'
+                                )}
+                            </div>
+
+                            <div>
+                                <strong>ระดับชั้น:</strong>
+                                ${escapeHtml(
+                                    sessionResult.user?.Assigned_Grade || '-'
+                                )}
+                            </div>
+
+                            <div>
+                                <strong>ประเภท:</strong>
+                                ${escapeHtml(
+                                    sessionResult.user?.Assigned_Type || '-'
+                                )}
+                            </div>
+
+                        </div>
+
+                        <div style="margin-top:15px;">
+                            กำลังโหลดข้อมูลระบบ...
+                        </div>
+
+                    `;
+
+                }
+
+
+                // =================================
+                // LOAD APP DATA
+                // =================================
+
+                loadAppData(
+                    sessionId
+                );
+
+            }
+        )
+
+
+        .withFailureHandler(
+            function(error) {
+
+                console.error(
+                    'SESSION ERROR:',
+                    error
+                );
+
+
+                showError(
+                    error?.message ||
+                    'เกิดข้อผิดพลาดในการตรวจสอบ Session'
+                );
+
+            }
+        )
+
+
+        .getSession(
+            sessionId
+        );
+
+}
+
+
+/* =================================================
+   APP DATA
+================================================= */
+
+function loadAppData(
+    sessionId
+) {
+
+    console.log(
+        'กำลังโหลด App Data...'
+    );
+
+
+    google.script.run
+
+        .withSuccessHandler(
+            function(result) {
+
+                console.log(
+                    'APP DATA RESULT:',
+                    result
+                );
+
+
+                if (
+                    !result ||
+                    result.success !== true
+                ) {
+
+                    showError(
+                        result?.message ||
+                        'ไม่สามารถโหลดข้อมูลระบบได้'
+                    );
+
+
+                    return;
+
+                }
+
+
+                window.APP_DATA =
+                    result;
+
+
+                console.log(
+                    'APP DATA โหลดสำเร็จ'
+                );
+
+
+                const status =
+                    document.getElementById(
+                        'status'
+                    );
+
+
+                if (status) {
+
+                    status.className =
+                        'status success';
+
+
+                    status.innerHTML = `
+
+                        <strong>
+                            ระบบพร้อมใช้งาน ✅
+                        </strong>
+
+                        <div class="user-info">
+
+                            <div>
+                                <strong>ผู้ใช้งาน:</strong>
+                                ${escapeHtml(
+                                    result.user?.Full_Name || '-'
+                                )}
+                            </div>
+
+                            <div>
+                                <strong>Role:</strong>
+                                ${escapeHtml(
+                                    result.user?.Role || '-'
+                                )}
+                            </div>
+
+                            <div>
+                                <strong>Locations:</strong>
+                                ${result.locations?.length || 0}
+                            </div>
+
+                            <div>
+                                <strong>Users:</strong>
+                                ${result.users?.length || 0}
+                            </div>
+
+                        </div>
+
+                    `;
+
+                }
+
+
+                // =================================
+                // DASHBOARD
+                // =================================
+
+                loadDashboardSummary(
+                    sessionId
+                );
+
+            }
+        )
+
+
+        .withFailureHandler(
+            function(error) {
+
+                console.error(
+                    'APP DATA ERROR:',
+                    error
+                );
+
+
+                showError(
+                    error?.message ||
+                    'เกิดข้อผิดพลาดในการโหลดข้อมูลระบบ'
+                );
+
+            }
+        )
+
+
+        .getAppData(
+            sessionId
+        );
+
+}
+
+
+/* =================================================
+   DASHBOARD
+================================================= */
+
+function loadDashboardSummary(
+    sessionId
+) {
+
+    if (!sessionId) {
+
+        sessionId =
+            getStoredSessionId();
+
+    }
+
+
+    if (!sessionId) {
+
+        console.error(
+            'ไม่พบ Session สำหรับ Dashboard'
+        );
+
+
+        return;
+
+    }
+
+
+    console.log(
+        'กำลังโหลด Dashboard Summary...'
+    );
+
+
+    google.script.run
+
+        .withSuccessHandler(
+            function(result) {
+
+                console.log(
+                    'DASHBOARD RESULT:',
+                    result
+                );
+
+
+                if (
+                    !result ||
+                    result.success !== true
+                ) {
+
+                    console.error(
+                        'Dashboard ไม่สำเร็จ:',
+                        result
+                    );
+
+
+                    return;
+
+                }
+
+
+                window.DASHBOARD_DATA =
+                    result;
+
+
+                updateDashboard(
+                    result
+                );
+
+
+                console.log(
+                    'Dashboard โหลดสำเร็จ ✅'
+                );
+
+            }
+        )
+
+
+        .withFailureHandler(
+            function(error) {
+
+                console.error(
+                    'Dashboard Error:',
+                    error
+                );
+
+            }
+        )
+
+
+        .getDashboardSummary(
+            sessionId
+        );
+
+}
+
+
+/* =================================================
+   UPDATE DASHBOARD
+================================================= */
+
+function updateDashboard(
+    result
+) {
+
+    const ids = {
+
+        totalLocations:
+            'totalLocations',
+
+        classroomCount:
+            'classroomCount',
+
+        areaCount:
+            'areaCount',
+
+        smeCount:
+            'smeCount',
+
+        totalLogs:
+            'totalLogs',
+
+        inspectedCount:
+            'inspectedCount',
+
+        pendingCount:
+            'pendingCount',
+
+        averageScore:
+            'averageScore'
+
+    };
+
+
+    const values = {
+
+        totalLocations:
+            result.locations?.total ?? 0,
+
+        classroomCount:
+            result.locations?.classroom ?? 0,
+
+        areaCount:
+            result.locations?.area ?? 0,
+
+        smeCount:
+            result.locations?.sme ?? 0,
+
+        totalLogs:
+            result.inspections?.totalLogs ?? 0,
+
+        inspectedCount:
+            result.inspections?.inspected ?? 0,
+
+        pendingCount:
+            result.inspections?.pending ?? 0,
+
+        averageScore:
+            result.score?.average ?? 0
+
+    };
+
+
+    Object.keys(ids).forEach(
+        function(key) {
+
+            const element =
+                document.getElementById(
+                    ids[key]
+                );
+
+
+            if (element) {
+
+                element.textContent =
+                    values[key];
+
+            }
+
+        }
+    );
+
+}
+
+
+/* =================================================
+   INSPECTION FORM
+================================================= */
+
+function openInspectionForm() {
+
+    const panel =
+        document.getElementById(
+            'inspectionPanel'
+        );
+
+
+    if (!panel) {
+
+        return;
+
+    }
+
+
+    panel.style.display =
+        'block';
+
+
+    loadInspectionLocations();
+
+    buildInspectionForm();
+
+    clearInspectionForm();
+
+
+    panel.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+    });
+
+}
+
+
+/* =================================================
+   BUILD FORM
+================================================= */
+
+function buildInspectionForm() {
+
+    const container =
+        document.getElementById(
+            'scoreContainer'
+        );
+
+
+    if (!container) {
+
+        return;
+
+    }
+
+
+    container.innerHTML =
+        '';
+
+
+    for (
+        let i = 1;
+        i <= 8;
+        i++
+    ) {
+
+        const wrapper =
+            document.createElement(
+                'div'
+            );
+
+
+        wrapper.style.cssText = `
+            padding:14px;
+            border-radius:12px;
+            background:#f8fafc;
+            border:1px solid #e5e7eb;
+        `;
+
+
+        wrapper.innerHTML = `
+
+            <label
+                style="
+                    display:block;
+                    margin-bottom:8px;
+                    font-weight:600;
+                "
+            >
+                รายการตรวจข้อ ${i}
+            </label>
+
+            <select
+                id="score${i}"
+                style="
+                    width:100%;
+                    padding:11px;
+                    border:1px solid #d1d5db;
+                    border-radius:9px;
+                    font-size:15px;
+                "
+            >
+
+                <option value="">
+                    -- เลือกคะแนน --
+                </option>
+
+                <option value="5">
+                    5 - ดีมาก
+                </option>
+
+                <option value="4">
+                    4 - ดี
+                </option>
+
+                <option value="3">
+                    3 - ปานกลาง
+                </option>
+
+                <option value="2">
+                    2 - ควรปรับปรุง
+                </option>
+
+                <option value="1">
+                    1 - ไม่ผ่าน
+                </option>
+
+                <option value="0">
+                    0 - ไม่สามารถตรวจได้
+                </option>
+
+            </select>
+
+        `;
+
+
+        container.appendChild(
+            wrapper
+        );
+
+    }
+
+}
+
+
+/* =================================================
+   LOCATIONS
+================================================= */
+
+function loadInspectionLocations() {
+
+    const select =
+        document.getElementById(
+            'inspectionLocation'
+        );
+
+
+    if (!select) {
+
+        return;
+
+    }
+
+
+    const sessionId =
+        getStoredSessionId();
+
+
+    if (!sessionId) {
+
+        select.innerHTML = `
+            <option value="">
+                -- Session หมดอายุ --
+            </option>
+        `;
+
+
+        return;
+
+    }
+
+
+    select.innerHTML = `
+        <option value="">
+            กำลังโหลดสถานที่...
+        </option>
+    `;
+
+
+    google.script.run
+
+        .withSuccessHandler(
+            function(result) {
+
+                console.log(
+                    'ALLOWED LOCATIONS RESULT:',
+                    result
+                );
+
+
+                if (
+                    !result ||
+                    result.success !== true
+                ) {
+
+                    select.innerHTML = `
+                        <option value="">
+                            -- ไม่สามารถโหลดสถานที่ได้ --
+                        </option>
+                    `;
+
+
+                    return;
+
+                }
+
+
+                const locations =
+                    result.locations || [];
+
+
+                select.innerHTML = `
+                    <option value="">
+                        -- เลือกสถานที่ --
+                    </option>
+                `;
+
+
+                locations.forEach(
+                    function(location) {
+
+                        const option =
+                            document.createElement(
+                                'option'
+                            );
+
+
+                        option.value =
+                            location.Location_ID;
+
+
+                        option.textContent =
+                            location.Location_Name;
+
+
+                        select.appendChild(
+                            option
+                        );
+
+                    }
+                );
+
+
+                console.log(
+                    'สถานที่ที่มีสิทธิ์:',
+                    locations.length
+                );
+
+            }
+        )
+
+
+        .withFailureHandler(
+            function(error) {
+
+                console.error(
+                    'LOCATION ERROR:',
+                    error
+                );
+
+
+                select.innerHTML = `
+                    <option value="">
+                        -- เกิดข้อผิดพลาดในการโหลด --
+                    </option>
+                `;
+
+            }
+        )
+
+
+        .getAllowedInspectionLocations(
+            sessionId
+        );
+
+}
+
+
+/* =================================================
+   CLEAR FORM
+================================================= */
+
+function clearInspectionForm() {
+
+    const location =
+        document.getElementById(
+            'inspectionLocation'
+        );
+
+
+    const remark =
+        document.getElementById(
+            'inspectionRemark'
+        );
+
+
+    const message =
+        document.getElementById(
+            'inspectionMessage'
+        );
+
+
+    const button =
+        document.getElementById(
+            'submitInspectionButton'
+        );
+
+
+    if (location) {
+
+        location.value =
+            '';
+
+    }
+
+
+    for (
+        let i = 1;
+        i <= 8;
+        i++
+    ) {
+
+        const score =
+            document.getElementById(
+                'score' + i
+            );
+
+
+        if (score) {
+
+            score.value =
+                '';
+
+        }
+
+    }
+
+
+    if (remark) {
+
+        remark.value =
+            '';
+
+    }
+
+
+    if (message) {
+
+        message.style.display =
+            'none';
+
+
+        message.innerHTML =
+            '';
+
+    }
+
+
+    if (button) {
+
+        button.disabled =
+            false;
+
+
+        button.textContent =
+            'บันทึกผลการตรวจ';
+
+    }
+
+}
+
+
+/* =================================================
+   SUBMIT
+================================================= */
+
+function submitInspectionForm() {
+
+    const sessionId =
+        getStoredSessionId();
+
+
+    if (!sessionId) {
+
+        showError(
+            'Session หมดอายุ กรุณาเข้าสู่ระบบใหม่'
+        );
+
+
+        return;
+
+    }
+
+
+    const locationElement =
+        document.getElementById(
+            'inspectionLocation'
+        );
+
+
+    const remarkElement =
+        document.getElementById(
+            'inspectionRemark'
+        );
+
+
+    const button =
+        document.getElementById(
+            'submitInspectionButton'
+        );
+
+
+    if (!locationElement) {
+
+        showInspectionMessage(
+            'ไม่พบช่องเลือกสถานที่',
+            false
+        );
+
+
+        return;
+
+    }
+
+
+    const locationId =
+        String(
+            locationElement.value || ''
+        ).trim();
+
+
+    if (!locationId) {
+
+        showInspectionMessage(
+            'กรุณาเลือกสถานที่ตรวจ',
+            false
+        );
+
+
+        return;
+
+    }
+
+
+    const scores = [];
+
+
+    for (
+        let i = 1;
+        i <= 8;
+        i++
+    ) {
+
+        const element =
+            document.getElementById(
+                'score' + i
+            );
+
+
+        if (!element) {
+
+            showInspectionMessage(
+                'ไม่พบช่องคะแนนข้อ ' + i,
+                false
+            );
+
+
+            return;
+
+        }
+
+
+        if (
+            element.value === ''
+        ) {
+
+            showInspectionMessage(
+                'กรุณากรอกคะแนนให้ครบทั้ง 8 ข้อ',
+                false
+            );
+
+
+            return;
+
+        }
+
+
+        const score =
+            Number(
+                element.value
+            );
+
+
+        if (
+            !Number.isFinite(score) ||
+            score < 0 ||
+            score > 5
+        ) {
+
+            showInspectionMessage(
+                'คะแนนข้อ ' + i + ' ไม่ถูกต้อง',
+                false
+            );
+
+
+            return;
+
+        }
+
+
+        scores.push(
+            score
+        );
+
+    }
+
+
+    const data = {
+
+        sessionId:
+            String(sessionId),
+
+        locationId:
+            locationId,
+
+        inspectDate:
+            new Date().toISOString(),
+
+        score1:
+            scores[0],
+
+        score2:
+            scores[1],
+
+        score3:
+            scores[2],
+
+        score4:
+            scores[3],
+
+        score5:
+            scores[4],
+
+        score6:
+            scores[5],
+
+        score7:
+            scores[6],
+
+        score8:
+            scores[7],
+
+        remark:
+            remarkElement
+                ? String(
+                    remarkElement.value || ''
+                ).trim()
+                : ''
+
+    };
+
+
+    if (button) {
+
+        button.disabled =
+            true;
+
+
+        button.textContent =
+            'กำลังบันทึก...';
+
+    }
+
+
+    showInspectionMessage(
+        'กำลังบันทึกผลการตรวจ...',
+        true
+    );
+
+
+    google.script.run
+
+        .withSuccessHandler(
+            function(result) {
+
+                console.log(
+                    'SUBMIT RESULT:',
+                    result
+                );
+
+
+                if (
+                    !result ||
+                    result.success !== true
+                ) {
+
+                    if (button) {
+
+                        button.disabled =
+                            false;
+
+
+                        button.textContent =
+                            'บันทึกผลการตรวจ';
+
+                    }
+
+
+                    showInspectionMessage(
+                        result?.message ||
+                        'ไม่สามารถบันทึกผลการตรวจได้',
+                        false
+                    );
+
+
+                    return;
+
+                }
+
+
+                const inspection =
+                    result.inspection || {};
+
+
+                const locationName =
+                    inspection.Location_Name ||
+                    locationId;
+
+
+                const totalScore =
+                    inspection.Total_Score ??
+                    0;
+
+
+                showInspectionMessage(
+
+                    `
+                        <strong>
+                            บันทึกสำเร็จ ✅
+                        </strong>
+
+                        <br>
+
+                        ${escapeHtml(
+                            locationName
+                        )}
+
+                        <br>
+
+                        คะแนนรวม:
+                        <strong>
+                            ${escapeHtml(
+                                totalScore
+                            )}
+                        </strong>
+                    `,
+
+                    true
+
+                );
+
+
+                if (button) {
+
+                    button.textContent =
+                        'บันทึกสำเร็จ ✓';
+
+                }
+
+
+                setTimeout(
+                    function() {
+
+                        loadDashboardSummary(
+                            sessionId
+                        );
+
+                    },
+                    500
+                );
+
+            }
+        )
+
+
+        .withFailureHandler(
+            function(error) {
+
+                console.error(
+                    'SUBMIT ERROR:',
+                    error
+                );
+
+
+                if (button) {
+
+                    button.disabled =
+                        false;
+
+
+                    button.textContent =
+                        'บันทึกผลการตรวจ';
+
+                }
+
+
+                showInspectionMessage(
+                    error?.message ||
+                    'เกิดข้อผิดพลาดในการบันทึก',
+                    false
+                );
+
+            }
+        )
+
+
+        .submitInspection(
+            data
+        );
+
+}
+
+
+/* =================================================
+   MESSAGE
+================================================= */
+
+function showInspectionMessage(
+    message,
+    success
+) {
+
+    const element =
+        document.getElementById(
+            'inspectionMessage'
+        );
+
+
+    if (!element) {
+
+        return;
+
+    }
+
+
+    element.style.display =
+        'block';
+
+
+    element.style.background =
+        success
+            ? '#dcfce7'
+            : '#fee2e2';
+
+
+    element.style.color =
+        success
+            ? '#166534'
+            : '#991b1b';
+
+
+    element.innerHTML =
+        message;
+
+}
+
+
+/* =================================================
+   ERROR
+================================================= */
+
+function showError(
+    message
+) {
+
+    const status =
+        document.getElementById(
+            'status'
+        );
+
+
+    if (!status) {
+
+        return;
+
+    }
+
+
+    status.className =
+        'status error';
+
+
+    status.innerHTML = `
+
+        <strong>
+            เกิดข้อผิดพลาด ❌
+        </strong>
+
+        <br>
+
+        ${escapeHtml(
+            message
+        )}
+
+    `;
+
+}
+
+
+/* =================================================
+   SECURITY
+================================================= */
+
+function escapeHtml(
+    value
+) {
+
+    return String(value)
+
+        .replaceAll(
+            '&',
+            '&amp;'
+        )
+
+        .replaceAll(
+            '<',
+            '&lt;'
+        )
+
+        .replaceAll(
+            '>',
+            '&gt;'
+        )
+
+        .replaceAll(
+            '"',
+            '&quot;'
+        )
+
+        .replaceAll(
+            "'",
+            '&#039;'
+        );
+
+}
+
+
+/* =================================================
+   CHECK SESSION
+================================================= */
+
+function checkSession() {
+
+    initApp();
+
+}
+
+
+/* =================================================
+   START
+================================================= */
+
+document.addEventListener(
+    'DOMContentLoaded',
+    function() {
+
+        initApp();
+
+    }
+);
+
+</script>
+```
+
+```
+
+
+</body>
+
+</html>

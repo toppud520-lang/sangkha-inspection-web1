@@ -1,0 +1,645 @@
+<!DOCTYPE html><html class="light" lang="th"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Sangkha Inspection - Login (Dynamic)</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700&amp;family=Sarabun:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-error-container": "#93000a",
+                        "error": "#ba1a1a",
+                        "container-border": "#E2E8F0",
+                        "primary-container": "#d31e24",
+                        "on-primary-fixed-variant": "#93000f",
+                        "surface-container-highest": "#d3e4fe",
+                        "on-secondary": "#ffffff",
+                        "dirty-danger": "#EF4444",
+                        "on-background": "#0b1c30",
+                        "secondary-fixed": "#ffe16d",
+                        "surface-container-low": "#eff4ff",
+                        "primary-fixed-dim": "#ffb4ac",
+                        "pending-warning": "#F59E0B",
+                        "surface-variant": "#d3e4fe",
+                        "on-primary": "#ffffff",
+                        "on-secondary-container": "#6e5c00",
+                        "surface-container-high": "#dce9ff",
+                        "secondary": "#705d00",
+                        "inverse-surface": "#213145",
+                        "primary-fixed": "#ffdad6",
+                        "secondary-container": "#fcd400",
+                        "surface-bright": "#f8f9ff",
+                        "maintenance-orange": "#F97316",
+                        "primary": "#ab0013",
+                        "surface-container": "#e5eeff",
+                        "on-tertiary-container": "#ffeadd",
+                        "tertiary-container": "#9d5c1e",
+                        "surface-tint": "#bf0618",
+                        "secondary-fixed-dim": "#e9c400",
+                        "surface": "#f8f9ff",
+                        "inverse-primary": "#ffb4ac",
+                        "surface-dim": "#cbdbf5",
+                        "on-surface": "#0b1c30",
+                        "inverse-on-surface": "#eaf1ff",
+                        "on-tertiary-fixed-variant": "#6e3900",
+                        "surface-bg": "#F8FAFC",
+                        "on-surface-variant": "#5c403d",
+                        "background": "#f8f9ff",
+                        "on-primary-container": "#ffe9e7",
+                        "sme-special": "#8B5CF6",
+                        "outline-variant": "#e6bdb9",
+                        "tertiary-fixed-dim": "#ffb77d",
+                        "on-primary-fixed": "#410003",
+                        "on-secondary-fixed": "#221b00",
+                        "tertiary-fixed": "#ffdcc3",
+                        "on-tertiary-fixed": "#2f1500",
+                        "error-container": "#ffdad6",
+                        "outline": "#916f6b",
+                        "on-error": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary-fixed-variant": "#544600",
+                        "clean-success": "#10B981",
+                        "tertiary": "#7f4504"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "gutter": "16px",
+                        "unit": "4px",
+                        "margin-desktop": "32px",
+                        "margin-mobile": "16px",
+                        "stack-comfortable": "24px",
+                        "stack-compact": "8px"
+                    },
+                    "fontFamily": {
+                        "label-bold": ["Sarabun"],
+                        "headline-md": ["Kanit"],
+                        "headline-xl": ["Kanit"],
+                        "headline-lg": ["Kanit"],
+                        "body-lg": ["Sarabun"],
+                        "body-sm": ["Sarabun"],
+                        "label-caps": ["Kanit"],
+                        "body-md": ["Sarabun"]
+                    },
+                    "fontSize": {
+                        "label-bold": ["12px", { "lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "headline-md": ["20px", { "lineHeight": "1.4", "fontWeight": "500" }],
+                        "headline-xl": ["32px", { "lineHeight": "1.2", "fontWeight": "600" }],
+                        "headline-lg": ["24px", { "lineHeight": "1.3", "fontWeight": "500" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "body-sm": ["14px", { "lineHeight": "1.4", "fontWeight": "400" }],
+                        "label-caps": ["11px", { "lineHeight": "1", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "1.5", "fontWeight": "400" }]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+        
+        .bg-overlay {
+            background-color: rgba(171, 0, 19, 0.75); /* Primary red with opacity */
+            mix-blend-mode: multiply;
+        }
+
+        .btn-gradient {
+            background: linear-gradient(135deg, #d31e24 0%, #ab0013 100%);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-gradient:hover {
+            background: linear-gradient(135deg, #ab0013 0%, #80000e 100%);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(171, 0, 19, 0.3);
+        }
+    </style>
+</head>
+<body class="bg-surface-bg text-on-surface font-body-md antialiased overflow-hidden flex h-screen">
+<!-- Background Image with Red Overlay -->
+<div class="absolute inset-0 z-0">
+<img alt="School Background" class="w-full h-full object-cover filter blur-sm" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDpeU0PXir8ziFgN8pJBbez-wRsvB1lfzc4lnXKDs1F1YG7ddMVhl31tznAQUTn1KgWH4t0dzljUouepEarpzlOqPLRLx6l7UFo_zkb2P-sFXW1DdyqPOq0BKEtLb3MXRlDgB8ElBHnWqaiQwSb7OhpRilqzT4BkQ_TT-XQAKkE6u7anYx_NyMdl5WEnnx91mOdQYKcq57w0ibQDCQQicVGpBK4iOQrUDidDVhwNQd9V-VJbiAGiWdx5nz7ZgmbBFXzlA">
+<div class="absolute inset-0 bg-overlay"></div>
+</div>
+<!-- Main Asymmetric Layout -->
+<main class="relative z-10 flex w-full h-full">
+<!-- Left Side: Brand Area (Hidden on small screens) -->
+<div class="hidden lg:flex flex-col justify-center items-center w-1/2 p-margin-desktop text-white">
+<div class="max-w-lg text-center animate-fade-in-up">
+<img alt="Sangkha School Logo" class="w-64 h-auto mx-auto mb-8 drop-shadow-2xl" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_yKPcoB2urOMFN1CoCv1_4P9AJqrT194Smqvqb5QDTYVcBElAUEjQrnn03-lWW3v_XxSN0ncskHbyG-RBjWf9cmOkdf__Gq6JQp1TQfPZ1ETF3OHkewsqzqm6dQOOXfJ60mFKP8-ziZyickOF54om7sfEkNWbJ11R5kevhg3BWltzdaG6OcQowNyrh0cDuWKhN60cEh2dMTy8oijPzlfAkxJpGQKgfRE7GRqAYspGx-89-HCraRJW8tBtvmSK_DyXSw">
+<h1 class="text-5xl font-headline-xl font-bold mb-4 tracking-tight drop-shadow-lg">
+                    ระบบตรวจความสะอาดโรงเรียนแบบ Real-time
+                </h1>
+<p class="text-xl font-body-lg opacity-90 drop-shadow-md">
+                    Sangkha School Inspection System
+                </p>
+<div class="mt-12 flex justify-center gap-4">
+<span class="bg-white/20 px-4 py-2 rounded-full backdrop-blur-sm text-sm font-label-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">speed</span> Fast
+                     </span>
+<span class="bg-white/20 px-4 py-2 rounded-full backdrop-blur-sm text-sm font-label-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">security</span> Secure
+                     </span>
+<span class="bg-white/20 px-4 py-2 rounded-full backdrop-blur-sm text-sm font-label-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">sync</span> Real-time
+                     </span>
+</div>
+</div>
+</div>
+<!-- Right Side: Login Form Area -->
+<div class="w-full lg:w-1/2 flex items-center justify-center p-4 sm:p-margin-desktop">
+<!-- Login Card (Glassmorphism) -->
+<div class="glass-panel w-full max-w-md rounded-2xl p-8 sm:p-10 relative overflow-hidden">
+<!-- Decorative elements inside card -->
+<div class="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-bl-full -z-10"></div>
+<div class="absolute bottom-0 left-0 w-24 h-24 bg-secondary/10 rounded-tr-full -z-10"></div>
+<div class="text-center mb-8">
+<!-- Mobile Logo (Visible only on small screens) -->
+<img alt="Logo" class="w-24 h-auto mx-auto mb-4 lg:hidden" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAW4JXKoXAYpLmZk91bPXIK4AlA3mvWjat6_YV9Lmj6r1tEAU7A0KZrD3lVvQBV3-qSbO45qf00LvMjzpCJS62HNxa46WPOe--eDW3QHKy8jTDBx1pl96OPY-rsgya_imOPf9tWDkhvq0wi47DZpNIKKfGEIi2-ejEtwKgsf-APpCjs71pc_29W24G1eEzzJFBIr5wrRFRAA9pCAoX0F99Pz1lFOXXmXh-v4ecB22vgSDjxZWIXL4y3uKVY10cNBDBrfQ">
+<div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary-container text-primary mb-4 shadow-inner">
+<span class="material-symbols-outlined text-3xl">admin_panel_settings</span>
+</div>
+<h2 class="text-headline-xl font-headline-xl text-on-surface font-bold">เข้าสู่ระบบ</h2>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-2">
+                        เข้าสู่ระบบเพื่อจัดการข้อมูลการตรวจสอบ
+                    </p>
+</div>
+<form class="space-y-6" id="loginForm">
+<div>
+<label class="block text-label-bold font-label-bold text-on-surface-variant mb-2" for="username">
+                            ชื่อผู้ใช้ (Username)
+                        </label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">person</span>
+<input class="w-full pl-10 pr-4 py-3 bg-surface-container-lowest/80 border border-container-border rounded-xl text-body-md font-body-md text-on-surface focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all backdrop-blur-sm" id="username" placeholder="กรอกชื่อผู้ใช้ของคุณ" required="" type="text">
+</div>
+</div>
+<div>
+<div class="flex justify-between items-center mb-2">
+<label class="block text-label-bold font-label-bold text-on-surface-variant" for="password">
+                                รหัสผ่าน (Password)
+                            </label>
+<a class="text-label-caps font-label-caps text-primary hover:text-primary-container transition-colors" href="#">ลืมรหัสผ่าน?</a>
+</div>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">lock</span>
+<input class="w-full pl-10 pr-10 py-3 bg-surface-container-lowest/80 border border-container-border rounded-xl text-body-md font-body-md text-on-surface focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all backdrop-blur-sm" id="password" placeholder="กรอกรหัสผ่านของคุณ" required="" type="password">
+<button class="absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant hover:text-primary transition-colors focus:outline-none" type="button">
+<span class="material-symbols-outlined">visibility_off</span>
+</button>
+</div>
+</div>
+<div class="flex items-center">
+<input class="w-4 h-4 text-primary bg-surface-container-lowest border-container-border rounded focus:ring-primary focus:ring-2" id="remember" type="checkbox">
+<label class="ml-2 text-body-sm font-body-sm text-on-surface-variant" for="remember">จดจำการเข้าสู่ระบบ</label>
+</div>
+<button
+    class="btn-gradient w-full text-white font-headline-md text-lg py-3 rounded-xl shadow-lg flex justify-center items-center gap-2"
+    id="loginButton"
+    type="submit"
+>
+    <span id="loginButtonText">เข้าสู่ระบบ</span>
+    <span class="material-symbols-outlined text-lg" id="loginButtonIcon">arrow_forward</span>
+</button>
+</form>
+<div class="mt-8 pt-6 border-t border-container-border/50 text-center">
+<p class="text-label-caps font-label-caps text-on-surface-variant">สร้างโดยคณะกรรมการสภานักเรียนประจำปีงบประมาณ 2569</p>
+</div>
+</div>
+</div>
+</main>
+
+<script>
+
+document.getElementById('loginForm').addEventListener(
+    'submit',
+    function(event) {
+
+        event.preventDefault();
+
+
+        // =========================================
+        // ELEMENTS
+        // =========================================
+
+        const username =
+            document.getElementById(
+                'username'
+            ).value.trim();
+
+
+        const password =
+            document.getElementById(
+                'password'
+            ).value.trim();
+
+
+        const loginButton =
+            document.getElementById(
+                'loginButton'
+            );
+
+
+        const loginButtonText =
+            document.getElementById(
+                'loginButtonText'
+            );
+
+
+        const loginButtonIcon =
+            document.getElementById(
+                'loginButtonIcon'
+            );
+
+
+        // =========================================
+        // VALIDATION
+        // =========================================
+
+        if (
+            !username ||
+            !password
+        ) {
+
+            alert(
+                'กรุณากรอก Username และ Password'
+            );
+
+            return;
+
+        }
+
+
+        // =========================================
+        // LOCK BUTTON
+        // =========================================
+
+        loginButton.disabled =
+            true;
+
+
+        loginButtonText.textContent =
+            'กำลังเข้าสู่ระบบ...';
+
+
+        loginButtonIcon.textContent =
+            'hourglass_top';
+
+
+        console.log(
+            '========================================'
+        );
+
+        console.log(
+            'เริ่ม Login'
+        );
+
+        console.log(
+            'Username:',
+            username
+        );
+
+        console.log(
+            '========================================'
+        );
+
+
+        // =========================================
+        // VERIFY LOGIN
+        // =========================================
+
+        google.script.run
+
+            .withSuccessHandler(
+                function(result) {
+
+                    console.log(
+                        'LOGIN RESULT:',
+                        result
+                    );
+
+
+                    // ---------------------------------
+                    // LOGIN FAILED
+                    // ---------------------------------
+
+                    if (
+                        !result ||
+                        result.success !== true
+                    ) {
+
+                        alert(
+                            result?.message ||
+                            'เข้าสู่ระบบไม่สำเร็จ'
+                        );
+
+
+                        resetLoginButton();
+
+                        return;
+
+                    }
+
+
+                    // ---------------------------------
+                    // GET SESSION
+                    // ---------------------------------
+
+                    const sessionId =
+                        String(
+                            result.sessionId || ''
+                        ).trim();
+
+
+                    if (!sessionId) {
+
+                        console.error(
+                            'Backend ไม่ส่ง sessionId:',
+                            result
+                        );
+
+
+                        alert(
+                            'เข้าสู่ระบบสำเร็จ แต่ไม่พบ Session ID'
+                        );
+
+
+                        resetLoginButton();
+
+                        return;
+
+                    }
+
+
+                    // ---------------------------------
+                    // GET USER
+                    // ---------------------------------
+
+                    const user =
+                        result.user || {};
+
+
+                    const role =
+                        String(
+                            user.Role || ''
+                        )
+                        .trim()
+                        .toLowerCase();
+
+
+                    console.log(
+                        'Login สำเร็จ'
+                    );
+
+
+                    console.log(
+                        'Session ID:',
+                        sessionId
+                    );
+
+
+                    console.log(
+                        'User:',
+                        user
+                    );
+
+
+                    console.log(
+                        'Role:',
+                        role
+                    );
+
+
+                    // =================================
+                    // SAVE SESSION
+                    // =================================
+
+                    try {
+
+                        sessionStorage.setItem(
+                            'sessionId',
+                            sessionId
+                        );
+
+
+                        sessionStorage.setItem(
+                            'user',
+                            JSON.stringify(
+                                user
+                            )
+                        );
+
+
+                    } catch (storageError) {
+
+                        console.error(
+                            'Storage Error:',
+                            storageError
+                        );
+
+                    }
+
+
+                    console.log(
+                        'Stored Session:',
+                        sessionStorage.getItem(
+                            'sessionId'
+                        )
+                    );
+
+
+                    // =================================
+                    // WEB APP URL
+                    // =================================
+
+                    const webAppUrl =
+                        '<?= ScriptApp.getService().getUrl() ?>';
+
+
+                    if (!webAppUrl) {
+
+                        alert(
+                            'ไม่พบ Web App URL'
+                        );
+
+
+                        resetLoginButton();
+
+                        return;
+
+                    }
+
+
+                    // =================================
+                    // ROLE ROUTING
+                    // =================================
+
+                    let targetPage = '';
+
+
+                    if (
+                        role === 'inspector'
+                    ) {
+
+                        targetPage =
+                            'inspector';
+
+                    }
+                    else if (
+                        role === 'supervisor'
+                    ) {
+
+                        targetPage =
+                            'supervisor';
+
+                    }
+                    else {
+
+                        console.error(
+                            'ไม่รู้จัก Role:',
+                            user.Role
+                        );
+
+
+                        alert(
+                            'บัญชีนี้ไม่มีสิทธิ์เข้าใช้งานระบบ'
+                        );
+
+
+                        resetLoginButton();
+
+                        return;
+
+                    }
+
+
+                    // =================================
+                    // TARGET URL
+                    // =================================
+
+                    const targetUrl =
+                        webAppUrl +
+                        '?page=' +
+                        encodeURIComponent(
+                            targetPage
+                        ) +
+                        '&sessionId=' +
+                        encodeURIComponent(
+                            sessionId
+                        );
+
+
+                    console.log(
+                        '========================================'
+                    );
+
+
+                    console.log(
+                        'กำลังไปหน้า:',
+                        targetPage
+                    );
+
+
+                    console.log(
+                        'Target URL:',
+                        targetUrl
+                    );
+
+
+                    console.log(
+                        'Role:',
+                        role
+                    );
+
+
+                    console.log(
+                        'Session:',
+                        sessionId
+                    );
+
+
+                    console.log(
+                        '========================================'
+                    );
+
+
+                    // =================================
+                    // REDIRECT
+                    // =================================
+
+                    window.location.href =
+                        targetUrl;
+
+                }
+            )
+
+
+            .withFailureHandler(
+                function(error) {
+
+                    console.error(
+                        'LOGIN ERROR:',
+                        error
+                    );
+
+
+                    alert(
+                        error?.message ||
+                        'เกิดข้อผิดพลาดในการเชื่อมต่อระบบ'
+                    );
+
+
+                    resetLoginButton();
+
+                }
+            )
+
+
+            .verifyLogin(
+                username,
+                password
+            );
+
+
+        // =========================================
+        // RESET
+        // =========================================
+
+        function resetLoginButton() {
+
+            loginButton.disabled =
+                false;
+
+
+            loginButtonText.textContent =
+                'เข้าสู่ระบบ';
+
+
+            loginButtonIcon.textContent =
+                'arrow_forward';
+
+        }
+
+    }
+);
+
+</script>
+
+
+</body></html>
+
